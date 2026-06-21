@@ -1,0 +1,409 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Plane API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "X-API-Key",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List all projects in a workspace.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "List all projects in a workspace."
+        },
+        {
+          "info": { "name": "Create a project in a workspace.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"name\": \"\",\n  \"identifier\": \"\"\n}" }
+          },
+          "docs": "Create a project in a workspace."
+        },
+        {
+          "info": { "name": "Retrieve a project.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "Retrieve a project."
+        },
+        {
+          "info": { "name": "Update a project.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Update a project."
+        },
+        {
+          "info": { "name": "Delete a project.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "Delete a project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Work Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List all work items in a project.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "List all work items in a project."
+        },
+        {
+          "info": { "name": "Create a work item in a project.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"name\": \"\"\n}" }
+          },
+          "docs": "Create a work item in a project."
+        },
+        {
+          "info": { "name": "Retrieve a work item.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" },
+              { "name": "work_item_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "Retrieve a work item."
+        },
+        {
+          "info": { "name": "Update a work item.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" },
+              { "name": "work_item_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Update a work item."
+        },
+        {
+          "info": { "name": "Delete a work item.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" },
+              { "name": "work_item_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "Delete a work item."
+        },
+        {
+          "info": { "name": "List comments on a work item.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/comments/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" },
+              { "name": "work_item_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "List comments on a work item."
+        },
+        {
+          "info": { "name": "Add a comment to a work item.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/comments/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" },
+              { "name": "work_item_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"comment_html\": \"<p></p>\",\n  \"access\": \"INTERNAL\"\n}" }
+          },
+          "docs": "Add a comment to a work item."
+        },
+        {
+          "info": { "name": "List links on a work item.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/links/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" },
+              { "name": "work_item_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "List links on a work item."
+        },
+        {
+          "info": { "name": "Add a link to a work item.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/links/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" },
+              { "name": "work_item_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"title\": \"\",\n  \"url\": \"\"\n}" }
+          },
+          "docs": "Add a link to a work item."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cycles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List all cycles in a project.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/cycles/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "List all cycles in a project."
+        },
+        {
+          "info": { "name": "Create a cycle in a project.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/cycles/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"name\": \"\"\n}" }
+          },
+          "docs": "Create a cycle in a project."
+        },
+        {
+          "info": { "name": "Add work items to a cycle.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/cycles/:cycle_id/work-items/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" },
+              { "name": "cycle_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"issues\": []\n}" }
+          },
+          "docs": "Add work items to a cycle."
+        },
+        {
+          "info": { "name": "Transfer incomplete work items to another cycle.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/cycles/:cycle_id/transfer-work-items/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" },
+              { "name": "cycle_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"new_cycle_id\": \"\"\n}" }
+          },
+          "docs": "Transfer incomplete work items to another cycle."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Modules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List all modules in a project.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/modules/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "List all modules in a project."
+        },
+        {
+          "info": { "name": "Create a module in a project.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/modules/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"name\": \"\"\n}" }
+          },
+          "docs": "Create a module in a project."
+        },
+        {
+          "info": { "name": "Add work items to a module.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/modules/:module_id/issues/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" },
+              { "name": "module_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"issues\": []\n}" }
+          },
+          "docs": "Add work items to a module."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "States",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List all states in a project.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/states/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "List all states in a project."
+        },
+        {
+          "info": { "name": "Create a state in a project.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/states/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"name\": \"\",\n  \"color\": \"#000000\"\n}" }
+          },
+          "docs": "Create a state in a project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Labels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List all labels in a project.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/labels/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "List all labels in a project."
+        },
+        {
+          "info": { "name": "Create a label in a project.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/labels/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{\n  \"name\": \"\"\n}" }
+          },
+          "docs": "Create a label in a project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Members",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List the members of a project.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/members/",
+            "params": [
+              { "name": "workspace_slug", "value": "", "type": "path" },
+              { "name": "project_id", "value": "", "type": "path" }
+            ]
+          },
+          "docs": "List the members of a project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

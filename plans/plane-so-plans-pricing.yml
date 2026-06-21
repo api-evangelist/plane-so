@@ -1,0 +1,164 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Plane
+providerId: plane-so
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Project Management
+- Issue Tracking
+- Work Management
+- Open Source
+- Plans
+description: >-
+  Plane is available two ways. The open-source Community Edition is free to
+  self-host under the AGPL v3.0 license with no user limit, and the REST API is
+  included. Plane Cloud is a managed SaaS with a free tier (up to 12 seats and
+  full API access) plus per-seat Pro and Business plans billed per Admin/Member
+  seat (Guests are free, 5 per paid seat), and a custom-priced Enterprise plan.
+  A self-hosted Commercial Edition is also offered per seat. The API itself is
+  not metered or billed separately; access is governed by the workspace plan.
+notes: >-
+  Per-seat prices reflect annual billing as published on the Plane pricing page
+  and are subject to change; verify current rates and seat inclusions during
+  reconciliation. Guests are free at 5 per paid seat on paid plans.
+sources:
+- https://plane.so/pricing
+- https://docs.plane.so/workspaces-and-users/billing-and-plans
+- https://developers.plane.so/self-hosting/editions-and-versions
+- https://plane.so/open-source
+plans:
+- id: plane-community
+  name: Community Edition (Self-Hosted)
+  type: open_source
+  description: >-
+    Free, open-source edition licensed under AGPL v3.0. Self-host on your own
+    infrastructure with no user limit. Includes the full REST API.
+  entries:
+  - label: Self-Hosted Community
+    name: community
+    type: flat
+    metric: license
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0 (AGPL v3.0, self-hosted)
+    userMultiplied: false
+  elements:
+  - name: Projects and Work Items
+  - name: Cycles and Modules
+  - name: States and Labels
+  - name: REST API
+- id: plane-cloud-free
+  name: Cloud Free
+  type: free
+  description: >-
+    Managed Plane Cloud free tier including up to 12 seats with core features -
+    Projects and Work Items, Cycles, Modules, Estimates, Intake, Layouts and
+    Views, Pages, and full API access.
+  entries:
+  - label: Free Seats
+    name: cloud_free
+    type: flat
+    metric: seats
+    limit: 12
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: APIs
+  - name: Cycles and Modules
+  - name: Estimates
+  - name: Pages
+- id: plane-cloud-pro
+  name: Cloud Pro
+  type: paid
+  description: >-
+    Professional project management for growing teams. Billed per Admin/Member
+    seat; Guests are free at 5 per paid seat.
+  entries:
+  - label: Pro Seat
+    name: pro_seat
+    type: usage
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $6 per seat / month (billed annually)
+    userMultiplied: true
+  elements:
+  - name: Everything in Free
+  - name: Advanced Layouts and Views
+  - name: Workflows
+- id: plane-cloud-business
+  name: Cloud Business
+  type: paid
+  description: >-
+    Governance and workflows for scaling organizations. Billed per Admin/Member
+    seat; Guests are free at 5 per paid seat.
+  entries:
+  - label: Business Seat
+    name: business_seat
+    type: usage
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $13 per seat / month (billed annually)
+    userMultiplied: true
+  elements:
+  - name: Everything in Pro
+  - name: Governance Controls
+  - name: Advanced Workflows
+- id: plane-commercial
+  name: Commercial Edition (Self-Hosted)
+  type: paid
+  description: >-
+    Recommended self-hosted commercial edition with managed updates and
+    additional commercial features, billed per seat.
+  entries:
+  - label: Commercial Seat
+    name: commercial_seat
+    type: usage
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $7 per seat / month
+    userMultiplied: true
+  elements:
+  - name: Self-Hosted Commercial Features
+- id: plane-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Enterprise Grid adds multi-workspace management, LDAP, SCIM, air-gapped
+    deployments, API audit logs, advanced access controls, and dedicated
+    success management. Custom pricing - contact Plane sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Multi-Workspace Management
+  - name: LDAP / SCIM
+  - name: Air-Gapped Deployment
+  - name: API Audit Logs
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

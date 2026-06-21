@@ -1,0 +1,168 @@
+aid: plane-so
+url: https://raw.githubusercontent.com/api-evangelist/plane-so/refs/heads/main/apis.yml
+name: Plane
+kind: company
+description: Plane is an open-source project and product management tool for planning,
+  tracking, and shipping work across workspaces, projects, cycles, and modules. It
+  is available as a self-hosted Community Edition (AGPL v3.0) and as Plane Cloud, and
+  exposes a REST API at https://api.plane.so/api/v1 secured with an X-API-Key header
+  for managing projects, work items, cycles, modules, states, labels, and members.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Project Management
+- Issue Tracking
+- Work Management
+- Open Source
+- Productivity
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: plane-so:projects
+  name: Plane Projects API
+  tags:
+  - Projects
+  - Workspaces
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.plane.so/api-reference/project/overview
+  baseURL: https://api.plane.so/api/v1
+  properties:
+  - url: https://developers.plane.so/api-reference/project/overview
+    type: Documentation
+  - url: https://developers.plane.so/api-reference/introduction
+    type: APIReference
+  - url: openapi/plane-so-openapi.yml
+    type: OpenAPI
+  - url: collections/plane-so.postman_collection.json
+    type: PostmanCollection
+  - url: collections/plane-so.opencollection.json
+    type: OpenCollection
+  description: Create, list, retrieve, update, and delete projects within a workspace,
+    the top-level containers that hold work items, cycles, modules, states, and labels.
+- aid: plane-so:issues
+  name: Plane Issues API
+  tags:
+  - Issues
+  - Work Items
+  - Comments
+  - Links
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.plane.so/api-reference/issue/overview
+  baseURL: https://api.plane.so/api/v1
+  properties:
+  - url: https://developers.plane.so/api-reference/issue/overview
+    type: Documentation
+  - url: https://developers.plane.so/api-reference/introduction
+    type: APIReference
+  - url: openapi/plane-so-openapi.yml
+    type: OpenAPI
+  - url: collections/plane-so.postman_collection.json
+    type: PostmanCollection
+  - url: collections/plane-so.opencollection.json
+    type: OpenCollection
+  description: Manage work items (issues) and their nested comments and links - create,
+    list, retrieve, update, and delete issues, attach threaded comments, and associate
+    external links.
+- aid: plane-so:cycles
+  name: Plane Cycles API
+  tags:
+  - Cycles
+  - Sprints
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.plane.so/api-reference/cycle/overview
+  baseURL: https://api.plane.so/api/v1
+  properties:
+  - url: https://developers.plane.so/api-reference/cycle/overview
+    type: Documentation
+  - url: https://developers.plane.so/api-reference/introduction
+    type: APIReference
+  - url: openapi/plane-so-openapi.yml
+    type: OpenAPI
+  - url: collections/plane-so.postman_collection.json
+    type: PostmanCollection
+  - url: collections/plane-so.opencollection.json
+    type: OpenCollection
+  description: Manage time-boxed cycles (sprints), archive and unarchive them, and
+    add, list, remove, and transfer the work items assigned to each cycle.
+- aid: plane-so:modules
+  name: Plane Modules API
+  tags:
+  - Modules
+  - Grouping
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.plane.so/api-reference/module/overview
+  baseURL: https://api.plane.so/api/v1
+  properties:
+  - url: https://developers.plane.so/api-reference/module/overview
+    type: Documentation
+  - url: https://developers.plane.so/api-reference/introduction
+    type: APIReference
+  - url: openapi/plane-so-openapi.yml
+    type: OpenAPI
+  - url: collections/plane-so.postman_collection.json
+    type: PostmanCollection
+  - url: collections/plane-so.opencollection.json
+    type: OpenCollection
+  description: Manage modules - focused groupings of work items with a lead, members,
+    and start/target dates - including archive/unarchive and assigning work items.
+- aid: plane-so:states-labels
+  name: Plane States & Labels API
+  tags:
+  - States
+  - Labels
+  - Workflow
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.plane.so/api-reference/state/overview
+  baseURL: https://api.plane.so/api/v1
+  properties:
+  - url: https://developers.plane.so/api-reference/state/overview
+    type: Documentation
+  - url: https://developers.plane.so/api-reference/label/overview
+    type: APIReference
+  - url: openapi/plane-so-openapi.yml
+    type: OpenAPI
+  - url: collections/plane-so.postman_collection.json
+    type: PostmanCollection
+  - url: collections/plane-so.opencollection.json
+    type: OpenCollection
+  description: Define the workflow states (grouped backlog, unstarted, started, completed,
+    cancelled) and the labels used to categorize work items within a project.
+- aid: plane-so:members
+  name: Plane Members API
+  tags:
+  - Members
+  - Teams
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.plane.so/api-reference/member/overview
+  baseURL: https://api.plane.so/api/v1
+  properties:
+  - url: https://developers.plane.so/api-reference/member/overview
+    type: Documentation
+  - url: https://developers.plane.so/api-reference/introduction
+    type: APIReference
+  - url: openapi/plane-so-openapi.yml
+    type: OpenAPI
+  - url: collections/plane-so.postman_collection.json
+    type: PostmanCollection
+  - url: collections/plane-so.opencollection.json
+    type: OpenCollection
+  description: List the members of a project, returning the people who can be assigned
+    to work items, cycles, and modules along with their roles.
+common:
+- type: GitHubOrganization
+  url: https://github.com/makeplane
+- type: LinkedIn
+  url: https://www.linkedin.com/company/planepowers
+- type: Website
+  url: https://plane.so
+- type: Documentation
+  url: https://developers.plane.so
+- type: Plans
+  url: plans/plane-so-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/plane-so-rate-limits.yml
+- type: FinOps
+  url: finops/plane-so-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

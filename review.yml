@@ -1,0 +1,84 @@
+aid: plane-so
+name: Plane
+review:
+  question: Does Plane expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Plane's public developer API
+    (https://api.plane.so/api/v1) is a synchronous REST/HTTPS interface. No
+    documented public WebSocket, Server-Sent Events, or other event-stream
+    surface is published in the API reference as of the review date, so there
+    is no in-scope async transport to model.
+findings:
+  summary: |
+    Plane does not publish a documented public WebSocket API. The public
+    developer API is REST over HTTPS, scoped to a workspace and project, and
+    authenticated with an X-API-Key header. The Plane application uses realtime
+    collaboration internally (for live editing and presence), but no public,
+    documented WebSocket (ws:// or wss://) endpoint is exposed for third-party
+    integration in the developer documentation. Integration with external
+    events is instead handled through webhooks configured in the workspace
+    settings, not through a client-facing streaming API.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.plane.so/api/v1
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No public WebSocket endpoint is documented in Plane's API reference. Internal realtime collaboration exists in the app but is not exposed as a public API.
+  endpointsConfirmedRest:
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/
+    - PATCH  https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/
+    - DELETE https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/work-items/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/work-items/
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/
+    - PATCH  https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/
+    - DELETE https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/comments/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/comments/
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/links/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/links/
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/work-items/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/transfer-work-items/
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/issues/
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/
+    - POST   https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/
+    - GET    https://api.plane.so/api/v1/workspaces/{workspace_slug}/projects/{project_id}/members/
+sources:
+  - url: https://developers.plane.so/api-reference/introduction
+    type: APIReference
+    note: Documents REST base URL https://api.plane.so/api/v1, X-API-Key auth, and 60 requests/minute rate limit. No WebSocket mentioned.
+  - url: https://developers.plane.so/api-reference/project/overview
+    type: Documentation
+    note: Project, work item, cycle, module, state, label, and member resources are all REST/HTTPS.
+  - url: https://developers.plane.so/api-reference/cycle/overview
+    type: Documentation
+    note: Cycle and cycle work-item endpoints are HTTPS REST with archive/unarchive/transfer actions.
+  - url: https://github.com/makeplane/plane
+    type: SourceCode
+    note: Open-source repository; realtime collaboration is internal to the app and not exposed as a public WebSocket API.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No public WebSocket or other event-stream protocol surface is documented,
+    so no AsyncAPI document was authored. The apis.yml catalog models the
+    documented REST surface across Projects, Issues, Cycles, Modules,
+    States/Labels, and Members.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

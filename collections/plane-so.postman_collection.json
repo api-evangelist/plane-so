@@ -1,0 +1,373 @@
+{
+  "info": {
+    "name": "Plane API",
+    "description": "REST API for Plane, the open-source project and product management tool. Base URL https://api.plane.so/api/v1. Authenticate with the X-API-Key header.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "X-API-Key", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.plane.so/api/v1" },
+    { "key": "apiKey", "value": "" },
+    { "key": "workspace_slug", "value": "" },
+    { "key": "project_id", "value": "" },
+    { "key": "work_item_id", "value": "" },
+    { "key": "cycle_id", "value": "" },
+    { "key": "module_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "List all projects in a workspace.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", ""]
+            }
+          }
+        },
+        {
+          "name": "Create a project in a workspace.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"\",\n  \"identifier\": \"\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", ""]
+            }
+          }
+        },
+        {
+          "name": "Retrieve a project.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", ""]
+            }
+          }
+        },
+        {
+          "name": "Update a project.",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", ""]
+            }
+          }
+        },
+        {
+          "name": "Delete a project.",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Work Items",
+      "item": [
+        {
+          "name": "List all work items in a project.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/work-items/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "work-items", ""]
+            }
+          }
+        },
+        {
+          "name": "Create a work item in a project.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/work-items/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "work-items", ""]
+            }
+          }
+        },
+        {
+          "name": "Retrieve a work item.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/work-items/{{work_item_id}}/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "work-items", "{{work_item_id}}", ""]
+            }
+          }
+        },
+        {
+          "name": "Update a work item.",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/work-items/{{work_item_id}}/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "work-items", "{{work_item_id}}", ""]
+            }
+          }
+        },
+        {
+          "name": "Delete a work item.",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/work-items/{{work_item_id}}/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "work-items", "{{work_item_id}}", ""]
+            }
+          }
+        },
+        {
+          "name": "List comments on a work item.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/work-items/{{work_item_id}}/comments/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "work-items", "{{work_item_id}}", "comments", ""]
+            }
+          }
+        },
+        {
+          "name": "Add a comment to a work item.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"comment_html\": \"<p></p>\",\n  \"access\": \"INTERNAL\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/work-items/{{work_item_id}}/comments/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "work-items", "{{work_item_id}}", "comments", ""]
+            }
+          }
+        },
+        {
+          "name": "List links on a work item.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/work-items/{{work_item_id}}/links/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "work-items", "{{work_item_id}}", "links", ""]
+            }
+          }
+        },
+        {
+          "name": "Add a link to a work item.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"\",\n  \"url\": \"\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/work-items/{{work_item_id}}/links/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "work-items", "{{work_item_id}}", "links", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cycles",
+      "item": [
+        {
+          "name": "List all cycles in a project.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/cycles/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "cycles", ""]
+            }
+          }
+        },
+        {
+          "name": "Create a cycle in a project.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/cycles/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "cycles", ""]
+            }
+          }
+        },
+        {
+          "name": "Add work items to a cycle.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"issues\": []\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/cycles/{{cycle_id}}/work-items/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "cycles", "{{cycle_id}}", "work-items", ""]
+            }
+          }
+        },
+        {
+          "name": "Transfer incomplete work items to another cycle.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"new_cycle_id\": \"\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/cycles/{{cycle_id}}/transfer-work-items/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "cycles", "{{cycle_id}}", "transfer-work-items", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Modules",
+      "item": [
+        {
+          "name": "List all modules in a project.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/modules/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "modules", ""]
+            }
+          }
+        },
+        {
+          "name": "Create a module in a project.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/modules/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "modules", ""]
+            }
+          }
+        },
+        {
+          "name": "Add work items to a module.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"issues\": []\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/modules/{{module_id}}/issues/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "modules", "{{module_id}}", "issues", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "States",
+      "item": [
+        {
+          "name": "List all states in a project.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/states/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "states", ""]
+            }
+          }
+        },
+        {
+          "name": "Create a state in a project.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"\",\n  \"color\": \"#000000\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/states/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "states", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Labels",
+      "item": [
+        {
+          "name": "List all labels in a project.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/labels/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "labels", ""]
+            }
+          }
+        },
+        {
+          "name": "Create a label in a project.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/labels/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "labels", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "item": [
+        {
+          "name": "List the members of a project.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspace_slug}}/projects/{{project_id}}/members/",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspace_slug}}", "projects", "{{project_id}}", "members", ""]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

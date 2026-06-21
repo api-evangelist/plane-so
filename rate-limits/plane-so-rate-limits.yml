@@ -1,0 +1,49 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Plane
+providerId: plane-so
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Project Management
+- Issue Tracking
+- Open Source
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Plane Cloud REST API enforces a fixed per-client rate limit of 60
+  requests per minute per API key. Requests beyond the limit receive an HTTP 429
+  response. Self-hosted Community Edition instances are not subject to Plane
+  Cloud's limit and can be tuned by the operator. List endpoints use cursor-based
+  pagination (cursor and per_page parameters) which keeps individual responses
+  bounded and reduces request volume.
+notes: >-
+  The 60 requests-per-minute limit is documented for Plane Cloud; verify against
+  the developer documentation during reconciliation as limits may change by plan.
+sources:
+- https://developers.plane.so/api-reference/introduction
+- https://plane.so/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute
+  scope: api_key
+  metric: requests
+  limit: 60
+  notes: Each client (API key) is limited to 60 requests per minute on Plane Cloud.
+- name: Self-Hosted
+  scope: instance
+  metric: requests
+  limit: operator-configured
+  notes: Community Edition instances are not bound by Plane Cloud's limit; the operator sets any throttling.
+policies:
+- name: Pagination
+  description: List endpoints use cursor-based pagination with cursor and per_page parameters; responses include next_cursor, prev_cursor, and total_results.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and respect the 429 response by retrying after a delay.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
