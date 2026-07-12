@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/plane-so-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: API key generated from your Plane workspace settings. Pass it in the X-API-Key
+    header on every request.
+  sources:
+  - openapi/plane-so-openapi.yml

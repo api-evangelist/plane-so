@@ -149,6 +149,12 @@ apis:
   description: List the members of a project, returning the people who can be assigned
     to work items, cycles, and modules along with their roles.
 common:
+- type: TrustCenter
+  url: security/plane-so-trust-center.yml
+- type: DomainSecurity
+  url: security/plane-so-domain-security.yml
+- type: Authentication
+  url: authentication/plane-so-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/makeplane
 - type: LinkedIn
@@ -163,6 +169,8 @@ common:
   url: rate-limits/plane-so-rate-limits.yml
 - type: FinOps
   url: finops/plane-so-finops.yml
+- url: https://plane.so/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
