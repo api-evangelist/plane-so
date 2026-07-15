@@ -149,6 +149,8 @@ apis:
   description: List the members of a project, returning the people who can be assigned
     to work items, cycles, and modules along with their roles.
 common:
+- type: AgenticAccess
+  url: agentic-access/plane-so-agentic-access.yml
 - type: TrustCenter
   url: security/plane-so-trust-center.yml
 - type: DomainSecurity
