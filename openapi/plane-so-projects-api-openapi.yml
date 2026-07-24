@@ -1,0 +1,246 @@
+openapi: 3.0.1
+info:
+  title: Plane Cycle Work Items Projects API
+  description: 'REST API for Plane, the open-source project and product management tool. The API is organized around REST with predictable, resource-oriented URLs, accepts JSON request bodies, returns JSON responses, and uses standard HTTP response codes and verbs. Resources are scoped to a workspace and project: workspaces contain projects, and projects contain work items (issues), cycles, modules, states, labels, and members. Authentication uses an X-API-Key header. This document covers Plane Cloud (https://api.plane.so); self-hosted Community Edition instances expose the same API under their own domain.'
+  termsOfService: https://plane.so/legals/terms-and-conditions
+  contact:
+    name: Plane Support
+    url: https://plane.so/contact
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/makeplane/plane/blob/master/LICENSE.txt
+  version: v1
+servers:
+- url: https://api.plane.so/api/v1
+  description: Plane Cloud
+security:
+- ApiKeyAuth: []
+tags:
+- name: Projects
+paths:
+  /workspaces/{workspace_slug}/projects/:
+    get:
+      operationId: listProjects
+      tags:
+      - Projects
+      summary: List all projects in a workspace.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/Cursor'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of projects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProjects'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createProject
+      tags:
+      - Projects
+      summary: Create a project in a workspace.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+      responses:
+        '201':
+          description: The created project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_slug}/projects/{project_id}/:
+    get:
+      operationId: getProject
+      tags:
+      - Projects
+      summary: Retrieve a project.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: The requested project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateProject
+      tags:
+      - Projects
+      summary: Update a project.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+      responses:
+        '200':
+          description: The updated project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    delete:
+      operationId: deleteProject
+      tags:
+      - Projects
+      summary: Delete a project.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '204':
+          description: The project was deleted.
+components:
+  parameters:
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
+    Cursor:
+      name: cursor
+      in: query
+      required: false
+      description: Cursor for cursor-based pagination, in the form value:offset:page.
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of results to return per page (default 20, max 100).
+      schema:
+        type: integer
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    ProjectCreate:
+      type: object
+      required:
+      - name
+      - identifier
+      properties:
+        name:
+          type: string
+        identifier:
+          type: string
+        description:
+          type: string
+        network:
+          type: integer
+        project_lead:
+          type: string
+          format: uuid
+        default_assignee:
+          type: string
+          format: uuid
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status_code:
+          type: integer
+    PaginatedProjects:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Project'
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        identifier:
+          type: string
+          description: Short prefix used in work item identifiers (e.g. PROJ).
+        description:
+          type: string
+        network:
+          type: integer
+          description: 0 for secret, 2 for public within the workspace.
+        workspace:
+          type: string
+          format: uuid
+        project_lead:
+          type: string
+          format: uuid
+        default_assignee:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Pagination:
+      type: object
+      properties:
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+        next_page_results:
+          type: boolean
+        prev_page_results:
+          type: boolean
+        total_results:
+          type: integer
+        total_pages:
+          type: integer
+        per_page:
+          type: integer
+  responses:
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key generated from your Plane workspace settings. Pass it in the X-API-Key header on every request.

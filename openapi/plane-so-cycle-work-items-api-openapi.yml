@@ -1,0 +1,192 @@
+openapi: 3.0.1
+info:
+  title: Plane Cycle Work Items API
+  description: 'REST API for Plane, the open-source project and product management tool. The API is organized around REST with predictable, resource-oriented URLs, accepts JSON request bodies, returns JSON responses, and uses standard HTTP response codes and verbs. Resources are scoped to a workspace and project: workspaces contain projects, and projects contain work items (issues), cycles, modules, states, labels, and members. Authentication uses an X-API-Key header. This document covers Plane Cloud (https://api.plane.so); self-hosted Community Edition instances expose the same API under their own domain.'
+  termsOfService: https://plane.so/legals/terms-and-conditions
+  contact:
+    name: Plane Support
+    url: https://plane.so/contact
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/makeplane/plane/blob/master/LICENSE.txt
+  version: v1
+servers:
+- url: https://api.plane.so/api/v1
+  description: Plane Cloud
+security:
+- ApiKeyAuth: []
+tags:
+- name: Cycle Work Items
+paths:
+  /workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/work-items/:
+    get:
+      operationId: listCycleWorkItems
+      tags:
+      - Cycle Work Items
+      summary: List the work items in a cycle.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/CycleId'
+      responses:
+        '200':
+          description: A list of cycle work items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkItem'
+    post:
+      operationId: addCycleWorkItems
+      tags:
+      - Cycle Work Items
+      summary: Add work items to a cycle.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/CycleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                issues:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+      responses:
+        '201':
+          description: The work items were added to the cycle.
+  /workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/work-items/{work_item_id}/:
+    delete:
+      operationId: removeCycleWorkItem
+      tags:
+      - Cycle Work Items
+      summary: Remove a work item from a cycle.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/CycleId'
+      - $ref: '#/components/parameters/WorkItemId'
+      responses:
+        '204':
+          description: The work item was removed from the cycle.
+  /workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/transfer-work-items/:
+    post:
+      operationId: transferCycleWorkItems
+      tags:
+      - Cycle Work Items
+      summary: Transfer incomplete work items to another cycle.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/CycleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                new_cycle_id:
+                  type: string
+                  format: uuid
+      responses:
+        '200':
+          description: The work items were transferred.
+components:
+  parameters:
+    CycleId:
+      name: cycle_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    WorkItemId:
+      name: work_item_id
+      in: path
+      required: true
+      description: The UUID of the work item (issue).
+      schema:
+        type: string
+        format: uuid
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
+  schemas:
+    WorkItem:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description_html:
+          type: string
+        priority:
+          type: string
+          enum:
+          - urgent
+          - high
+          - medium
+          - low
+          - none
+        state:
+          type: string
+          format: uuid
+        assignees:
+          type: array
+          items:
+            type: string
+            format: uuid
+        labels:
+          type: array
+          items:
+            type: string
+            format: uuid
+        sequence_id:
+          type: integer
+        sort_order:
+          type: number
+        start_date:
+          type: string
+          format: date
+        target_date:
+          type: string
+          format: date
+        project:
+          type: string
+          format: uuid
+        workspace:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key generated from your Plane workspace settings. Pass it in the X-API-Key header on every request.

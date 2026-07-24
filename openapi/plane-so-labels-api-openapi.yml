@@ -1,0 +1,176 @@
+openapi: 3.0.1
+info:
+  title: Plane Cycle Work Items Labels API
+  description: 'REST API for Plane, the open-source project and product management tool. The API is organized around REST with predictable, resource-oriented URLs, accepts JSON request bodies, returns JSON responses, and uses standard HTTP response codes and verbs. Resources are scoped to a workspace and project: workspaces contain projects, and projects contain work items (issues), cycles, modules, states, labels, and members. Authentication uses an X-API-Key header. This document covers Plane Cloud (https://api.plane.so); self-hosted Community Edition instances expose the same API under their own domain.'
+  termsOfService: https://plane.so/legals/terms-and-conditions
+  contact:
+    name: Plane Support
+    url: https://plane.so/contact
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/makeplane/plane/blob/master/LICENSE.txt
+  version: v1
+servers:
+- url: https://api.plane.so/api/v1
+  description: Plane Cloud
+security:
+- ApiKeyAuth: []
+tags:
+- name: Labels
+paths:
+  /workspaces/{workspace_slug}/projects/{project_id}/labels/:
+    get:
+      operationId: listLabels
+      tags:
+      - Labels
+      summary: List all labels in a project.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: A list of labels.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Label'
+    post:
+      operationId: createLabel
+      tags:
+      - Labels
+      summary: Create a label in a project.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelCreate'
+      responses:
+        '201':
+          description: The created label.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+  /workspaces/{workspace_slug}/projects/{project_id}/labels/{label_id}/:
+    get:
+      operationId: getLabel
+      tags:
+      - Labels
+      summary: Retrieve a label.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/LabelId'
+      responses:
+        '200':
+          description: The requested label.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+    patch:
+      operationId: updateLabel
+      tags:
+      - Labels
+      summary: Update a label.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/LabelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelCreate'
+      responses:
+        '200':
+          description: The updated label.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+    delete:
+      operationId: deleteLabel
+      tags:
+      - Labels
+      summary: Delete a label.
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceSlug'
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/LabelId'
+      responses:
+        '204':
+          description: The label was deleted.
+components:
+  schemas:
+    Label:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        parent:
+          type: string
+          format: uuid
+        project:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+    LabelCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        parent:
+          type: string
+          format: uuid
+  parameters:
+    LabelId:
+      name: label_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key generated from your Plane workspace settings. Pass it in the X-API-Key header on every request.
