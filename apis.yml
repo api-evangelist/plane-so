@@ -7,7 +7,20 @@ description: Plane is an open-source project and product management tool for pla
   is available as a self-hosted Community Edition (AGPL v3.0) and as Plane Cloud, and
   exposes a REST API at https://api.plane.so/api/v1 secured with an X-API-Key header
   for managing projects, work items, cycles, modules, states, labels, and members.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/plane-so.png
 tags:
 - Project Management
 - Issue Tracking
@@ -18,136 +31,336 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: plane-so:projects
-  name: Plane Projects API
-  tags:
-  - Projects
-  - Workspaces
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: plane-so:plane-so-cycle-work-items-api
+  name: Plane Cycle Work Items API
+  description: The Cycle Work Items API from Plane — 3 operation(s) for cycle work items.
   humanURL: https://developers.plane.so/api-reference/project/overview
   baseURL: https://api.plane.so/api/v1
-  properties:
-  - url: https://developers.plane.so/api-reference/project/overview
-    type: Documentation
-  - url: https://developers.plane.so/api-reference/introduction
-    type: APIReference
-  - url: openapi/plane-so-openapi.yml
-    type: OpenAPI
-  - url: collections/plane-so.postman_collection.json
-    type: PostmanCollection
-  - url: collections/plane-so.opencollection.json
-    type: OpenCollection
-  description: Create, list, retrieve, update, and delete projects within a workspace,
-    the top-level containers that hold work items, cycles, modules, states, and labels.
-- aid: plane-so:issues
-  name: Plane Issues API
   tags:
-  - Issues
-  - Work Items
-  - Comments
-  - Links
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.plane.so/api-reference/issue/overview
-  baseURL: https://api.plane.so/api/v1
+  - Cycle Work Items
   properties:
-  - url: https://developers.plane.so/api-reference/issue/overview
-    type: Documentation
-  - url: https://developers.plane.so/api-reference/introduction
-    type: APIReference
-  - url: openapi/plane-so-openapi.yml
-    type: OpenAPI
-  - url: collections/plane-so.postman_collection.json
-    type: PostmanCollection
-  - url: collections/plane-so.opencollection.json
-    type: OpenCollection
-  description: Manage work items (issues) and their nested comments and links - create,
-    list, retrieve, update, and delete issues, attach threaded comments, and associate
-    external links.
-- aid: plane-so:cycles
+  - type: OpenAPI
+    url: openapi/plane-so-cycle-work-items-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
+- aid: plane-so:plane-so-cycles-api
   name: Plane Cycles API
+  description: The Cycles API from Plane — 2 operation(s) for cycles.
+  humanURL: https://developers.plane.so/api-reference/project/overview
+  baseURL: https://api.plane.so/api/v1
   tags:
   - Cycles
-  - Sprints
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.plane.so/api-reference/cycle/overview
-  baseURL: https://api.plane.so/api/v1
   properties:
-  - url: https://developers.plane.so/api-reference/cycle/overview
-    type: Documentation
-  - url: https://developers.plane.so/api-reference/introduction
-    type: APIReference
-  - url: openapi/plane-so-openapi.yml
-    type: OpenAPI
-  - url: collections/plane-so.postman_collection.json
-    type: PostmanCollection
-  - url: collections/plane-so.opencollection.json
-    type: OpenCollection
-  description: Manage time-boxed cycles (sprints), archive and unarchive them, and
-    add, list, remove, and transfer the work items assigned to each cycle.
-- aid: plane-so:modules
-  name: Plane Modules API
-  tags:
-  - Modules
-  - Grouping
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.plane.so/api-reference/module/overview
+  - type: OpenAPI
+    url: openapi/plane-so-cycles-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
+- aid: plane-so:plane-so-labels-api
+  name: Plane Labels API
+  description: The Labels API from Plane — 2 operation(s) for labels.
+  humanURL: https://developers.plane.so/api-reference/project/overview
   baseURL: https://api.plane.so/api/v1
-  properties:
-  - url: https://developers.plane.so/api-reference/module/overview
-    type: Documentation
-  - url: https://developers.plane.so/api-reference/introduction
-    type: APIReference
-  - url: openapi/plane-so-openapi.yml
-    type: OpenAPI
-  - url: collections/plane-so.postman_collection.json
-    type: PostmanCollection
-  - url: collections/plane-so.opencollection.json
-    type: OpenCollection
-  description: Manage modules - focused groupings of work items with a lead, members,
-    and start/target dates - including archive/unarchive and assigning work items.
-- aid: plane-so:states-labels
-  name: Plane States & Labels API
   tags:
-  - States
   - Labels
-  - Workflow
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.plane.so/api-reference/state/overview
-  baseURL: https://api.plane.so/api/v1
   properties:
-  - url: https://developers.plane.so/api-reference/state/overview
-    type: Documentation
-  - url: https://developers.plane.so/api-reference/label/overview
-    type: APIReference
-  - url: openapi/plane-so-openapi.yml
-    type: OpenAPI
-  - url: collections/plane-so.postman_collection.json
-    type: PostmanCollection
-  - url: collections/plane-so.opencollection.json
-    type: OpenCollection
-  description: Define the workflow states (grouped backlog, unstarted, started, completed,
-    cancelled) and the labels used to categorize work items within a project.
-- aid: plane-so:members
+  - type: OpenAPI
+    url: openapi/plane-so-labels-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
+- aid: plane-so:plane-so-members-api
   name: Plane Members API
+  description: The Members API from Plane — 1 operation(s) for members.
+  humanURL: https://developers.plane.so/api-reference/project/overview
+  baseURL: https://api.plane.so/api/v1
   tags:
   - Members
-  - Teams
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.plane.so/api-reference/member/overview
-  baseURL: https://api.plane.so/api/v1
   properties:
-  - url: https://developers.plane.so/api-reference/member/overview
-    type: Documentation
-  - url: https://developers.plane.so/api-reference/introduction
-    type: APIReference
-  - url: openapi/plane-so-openapi.yml
-    type: OpenAPI
-  - url: collections/plane-so.postman_collection.json
-    type: PostmanCollection
-  - url: collections/plane-so.opencollection.json
-    type: OpenCollection
-  description: List the members of a project, returning the people who can be assigned
-    to work items, cycles, and modules along with their roles.
+  - type: OpenAPI
+    url: openapi/plane-so-members-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
+- aid: plane-so:plane-so-module-work-items-api
+  name: Plane Module Work Items API
+  description: The Module Work Items API from Plane — 2 operation(s) for module work items.
+  humanURL: https://developers.plane.so/api-reference/project/overview
+  baseURL: https://api.plane.so/api/v1
+  tags:
+  - Module Work Items
+  properties:
+  - type: OpenAPI
+    url: openapi/plane-so-module-work-items-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
+- aid: plane-so:plane-so-modules-api
+  name: Plane Modules API
+  description: The Modules API from Plane — 2 operation(s) for modules.
+  humanURL: https://developers.plane.so/api-reference/project/overview
+  baseURL: https://api.plane.so/api/v1
+  tags:
+  - Modules
+  properties:
+  - type: OpenAPI
+    url: openapi/plane-so-modules-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
+- aid: plane-so:plane-so-projects-api
+  name: Plane Projects API
+  description: The Projects API from Plane — 2 operation(s) for projects.
+  humanURL: https://developers.plane.so/api-reference/project/overview
+  baseURL: https://api.plane.so/api/v1
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/plane-so-projects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
+- aid: plane-so:plane-so-states-api
+  name: Plane States API
+  description: The States API from Plane — 2 operation(s) for states.
+  humanURL: https://developers.plane.so/api-reference/project/overview
+  baseURL: https://api.plane.so/api/v1
+  tags:
+  - States
+  properties:
+  - type: OpenAPI
+    url: openapi/plane-so-states-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
+- aid: plane-so:plane-so-work-item-comments-api
+  name: Plane Work Item Comments API
+  description: The Work Item Comments API from Plane — 2 operation(s) for work item comments.
+  humanURL: https://developers.plane.so/api-reference/project/overview
+  baseURL: https://api.plane.so/api/v1
+  tags:
+  - Work Item Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/plane-so-work-item-comments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
+- aid: plane-so:plane-so-work-item-links-api
+  name: Plane Work Item Links API
+  description: The Work Item Links API from Plane — 2 operation(s) for work item links.
+  humanURL: https://developers.plane.so/api-reference/project/overview
+  baseURL: https://api.plane.so/api/v1
+  tags:
+  - Work Item Links
+  properties:
+  - type: OpenAPI
+    url: openapi/plane-so-work-item-links-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
+- aid: plane-so:plane-so-work-items-api
+  name: Plane Work Items API
+  description: The Work Items API from Plane — 2 operation(s) for work items.
+  humanURL: https://developers.plane.so/api-reference/project/overview
+  baseURL: https://api.plane.so/api/v1
+  tags:
+  - Work Items
+  properties:
+  - type: OpenAPI
+    url: openapi/plane-so-work-items-api-openapi.yml
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/project/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/introduction
+  - type: PostmanCollection
+    url: collections/plane-so.postman_collection.json
+  - type: OpenCollection
+    url: collections/plane-so.opencollection.json
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/issue/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/cycle/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/module/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/state/overview
+  - type: APIReference
+    url: https://developers.plane.so/api-reference/label/overview
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/member/overview
 common:
 - type: AgenticAccess
   url: agentic-access/plane-so-agentic-access.yml
