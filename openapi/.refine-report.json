@@ -1,0 +1,34 @@
+{
+  "provider": "plane-so",
+  "sources": [
+    "plane-so-cycle-work-items-api-openapi.yml",
+    "plane-so-cycles-api-openapi.yml",
+    "plane-so-labels-api-openapi.yml",
+    "plane-so-members-api-openapi.yml",
+    "plane-so-module-work-items-api-openapi.yml",
+    "plane-so-modules-api-openapi.yml",
+    "plane-so-projects-api-openapi.yml",
+    "plane-so-states-api-openapi.yml",
+    "plane-so-work-item-comments-api-openapi.yml",
+    "plane-so-work-item-links-api-openapi.yml",
+    "plane-so-work-items-api-openapi.yml"
+  ],
+  "outputs": [
+    "plane-so-cycle-work-items-api-openapi.yml",
+    "plane-so-cycles-api-openapi.yml",
+    "plane-so-labels-api-openapi.yml",
+    "plane-so-members-api-openapi.yml",
+    "plane-so-module-work-items-api-openapi.yml",
+    "plane-so-modules-api-openapi.yml",
+    "plane-so-projects-api-openapi.yml",
+    "plane-so-states-api-openapi.yml",
+    "plane-so-work-item-comments-api-openapi.yml",
+    "plane-so-work-item-links-api-openapi.yml",
+    "plane-so-work-items-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

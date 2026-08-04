@@ -1,0 +1,1451 @@
+openapi: 3.0.1
+info:
+  title: Plane API
+  description: >-
+    REST API for Plane, the open-source project and product management tool.
+    The API is organized around REST with predictable, resource-oriented URLs,
+    accepts JSON request bodies, returns JSON responses, and uses standard HTTP
+    response codes and verbs. Resources are scoped to a workspace and project:
+    workspaces contain projects, and projects contain work items (issues),
+    cycles, modules, states, labels, and members. Authentication uses an
+    X-API-Key header. This document covers Plane Cloud (https://api.plane.so);
+    self-hosted Community Edition instances expose the same API under their own
+    domain.
+  termsOfService: https://plane.so/legals/terms-and-conditions
+  contact:
+    name: Plane Support
+    url: https://plane.so/contact
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/makeplane/plane/blob/master/LICENSE.txt
+  version: v1
+servers:
+  - url: https://api.plane.so/api/v1
+    description: Plane Cloud
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Projects
+  - name: Work Items
+  - name: Work Item Comments
+  - name: Work Item Links
+  - name: Cycles
+  - name: Cycle Work Items
+  - name: Modules
+  - name: Module Work Items
+  - name: States
+  - name: Labels
+  - name: Members
+paths:
+  /workspaces/{workspace_slug}/projects/:
+    get:
+      operationId: listProjects
+      tags:
+        - Projects
+      summary: List all projects in a workspace.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of projects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProjects'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createProject
+      tags:
+        - Projects
+      summary: Create a project in a workspace.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+      responses:
+        '201':
+          description: The created project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_slug}/projects/{project_id}/:
+    get:
+      operationId: getProject
+      tags:
+        - Projects
+      summary: Retrieve a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: The requested project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateProject
+      tags:
+        - Projects
+      summary: Update a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+      responses:
+        '200':
+          description: The updated project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    delete:
+      operationId: deleteProject
+      tags:
+        - Projects
+      summary: Delete a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '204':
+          description: The project was deleted.
+  /workspaces/{workspace_slug}/projects/{project_id}/work-items/:
+    get:
+      operationId: listWorkItems
+      tags:
+        - Work Items
+      summary: List all work items in a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of work items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWorkItems'
+    post:
+      operationId: createWorkItem
+      tags:
+        - Work Items
+      summary: Create a work item in a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkItemCreate'
+      responses:
+        '201':
+          description: The created work item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkItem'
+  /workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/:
+    get:
+      operationId: getWorkItem
+      tags:
+        - Work Items
+      summary: Retrieve a work item.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+      responses:
+        '200':
+          description: The requested work item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkItem'
+    patch:
+      operationId: updateWorkItem
+      tags:
+        - Work Items
+      summary: Update a work item.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkItemCreate'
+      responses:
+        '200':
+          description: The updated work item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkItem'
+    delete:
+      operationId: deleteWorkItem
+      tags:
+        - Work Items
+      summary: Delete a work item.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+      responses:
+        '204':
+          description: The work item was deleted.
+  /workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/comments/:
+    get:
+      operationId: listWorkItemComments
+      tags:
+        - Work Item Comments
+      summary: List comments on a work item.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+      responses:
+        '200':
+          description: A paginated list of comments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+    post:
+      operationId: createWorkItemComment
+      tags:
+        - Work Item Comments
+      summary: Add a comment to a work item.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentCreate'
+      responses:
+        '201':
+          description: The created comment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+  /workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/comments/{comment_id}/:
+    get:
+      operationId: getWorkItemComment
+      tags:
+        - Work Item Comments
+      summary: Retrieve a work item comment.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+        - $ref: '#/components/parameters/CommentId'
+      responses:
+        '200':
+          description: The requested comment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+    patch:
+      operationId: updateWorkItemComment
+      tags:
+        - Work Item Comments
+      summary: Update a work item comment.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+        - $ref: '#/components/parameters/CommentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentCreate'
+      responses:
+        '200':
+          description: The updated comment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+    delete:
+      operationId: deleteWorkItemComment
+      tags:
+        - Work Item Comments
+      summary: Delete a work item comment.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+        - $ref: '#/components/parameters/CommentId'
+      responses:
+        '204':
+          description: The comment was deleted.
+  /workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/links/:
+    get:
+      operationId: listWorkItemLinks
+      tags:
+        - Work Item Links
+      summary: List links on a work item.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+      responses:
+        '200':
+          description: A list of links.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+    post:
+      operationId: createWorkItemLink
+      tags:
+        - Work Item Links
+      summary: Add a link to a work item.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkCreate'
+      responses:
+        '201':
+          description: The created link.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Link'
+  /workspaces/{workspace_slug}/projects/{project_id}/work-items/{work_item_id}/links/{link_id}/:
+    get:
+      operationId: getWorkItemLink
+      tags:
+        - Work Item Links
+      summary: Retrieve a work item link.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+        - $ref: '#/components/parameters/LinkId'
+      responses:
+        '200':
+          description: The requested link.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Link'
+    patch:
+      operationId: updateWorkItemLink
+      tags:
+        - Work Item Links
+      summary: Update a work item link.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+        - $ref: '#/components/parameters/LinkId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkCreate'
+      responses:
+        '200':
+          description: The updated link.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Link'
+    delete:
+      operationId: deleteWorkItemLink
+      tags:
+        - Work Item Links
+      summary: Delete a work item link.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/WorkItemId'
+        - $ref: '#/components/parameters/LinkId'
+      responses:
+        '204':
+          description: The link was deleted.
+  /workspaces/{workspace_slug}/projects/{project_id}/cycles/:
+    get:
+      operationId: listCycles
+      tags:
+        - Cycles
+      summary: List all cycles in a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: A list of cycles.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cycle'
+    post:
+      operationId: createCycle
+      tags:
+        - Cycles
+      summary: Create a cycle in a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CycleCreate'
+      responses:
+        '201':
+          description: The created cycle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cycle'
+  /workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/:
+    get:
+      operationId: getCycle
+      tags:
+        - Cycles
+      summary: Retrieve a cycle.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/CycleId'
+      responses:
+        '200':
+          description: The requested cycle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cycle'
+    patch:
+      operationId: updateCycle
+      tags:
+        - Cycles
+      summary: Update a cycle.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/CycleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CycleCreate'
+      responses:
+        '200':
+          description: The updated cycle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cycle'
+    delete:
+      operationId: deleteCycle
+      tags:
+        - Cycles
+      summary: Delete a cycle.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/CycleId'
+      responses:
+        '204':
+          description: The cycle was deleted.
+  /workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/work-items/:
+    get:
+      operationId: listCycleWorkItems
+      tags:
+        - Cycle Work Items
+      summary: List the work items in a cycle.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/CycleId'
+      responses:
+        '200':
+          description: A list of cycle work items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkItem'
+    post:
+      operationId: addCycleWorkItems
+      tags:
+        - Cycle Work Items
+      summary: Add work items to a cycle.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/CycleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                issues:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+      responses:
+        '201':
+          description: The work items were added to the cycle.
+  /workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/work-items/{work_item_id}/:
+    delete:
+      operationId: removeCycleWorkItem
+      tags:
+        - Cycle Work Items
+      summary: Remove a work item from a cycle.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/CycleId'
+        - $ref: '#/components/parameters/WorkItemId'
+      responses:
+        '204':
+          description: The work item was removed from the cycle.
+  /workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/transfer-work-items/:
+    post:
+      operationId: transferCycleWorkItems
+      tags:
+        - Cycle Work Items
+      summary: Transfer incomplete work items to another cycle.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/CycleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                new_cycle_id:
+                  type: string
+                  format: uuid
+      responses:
+        '200':
+          description: The work items were transferred.
+  /workspaces/{workspace_slug}/projects/{project_id}/modules/:
+    get:
+      operationId: listModules
+      tags:
+        - Modules
+      summary: List all modules in a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: A list of modules.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Module'
+    post:
+      operationId: createModule
+      tags:
+        - Modules
+      summary: Create a module in a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModuleCreate'
+      responses:
+        '201':
+          description: The created module.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+  /workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/:
+    get:
+      operationId: getModule
+      tags:
+        - Modules
+      summary: Retrieve a module.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ModuleId'
+      responses:
+        '200':
+          description: The requested module.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+    patch:
+      operationId: updateModule
+      tags:
+        - Modules
+      summary: Update a module.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ModuleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModuleCreate'
+      responses:
+        '200':
+          description: The updated module.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+    delete:
+      operationId: deleteModule
+      tags:
+        - Modules
+      summary: Delete a module.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ModuleId'
+      responses:
+        '204':
+          description: The module was deleted.
+  /workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/issues/:
+    get:
+      operationId: listModuleWorkItems
+      tags:
+        - Module Work Items
+      summary: List the work items in a module.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ModuleId'
+      responses:
+        '200':
+          description: A list of module work items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkItem'
+    post:
+      operationId: addModuleWorkItems
+      tags:
+        - Module Work Items
+      summary: Add work items to a module.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ModuleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                issues:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+      responses:
+        '201':
+          description: The work items were added to the module.
+  /workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/issues/{work_item_id}/:
+    delete:
+      operationId: removeModuleWorkItem
+      tags:
+        - Module Work Items
+      summary: Remove a work item from a module.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ModuleId'
+        - $ref: '#/components/parameters/WorkItemId'
+      responses:
+        '204':
+          description: The work item was removed from the module.
+  /workspaces/{workspace_slug}/projects/{project_id}/states/:
+    get:
+      operationId: listStates
+      tags:
+        - States
+      summary: List all states in a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: A list of states.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/State'
+    post:
+      operationId: createState
+      tags:
+        - States
+      summary: Create a state in a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StateCreate'
+      responses:
+        '201':
+          description: The created state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/State'
+  /workspaces/{workspace_slug}/projects/{project_id}/states/{state_id}/:
+    get:
+      operationId: getState
+      tags:
+        - States
+      summary: Retrieve a state.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/StateId'
+      responses:
+        '200':
+          description: The requested state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/State'
+    patch:
+      operationId: updateState
+      tags:
+        - States
+      summary: Update a state.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/StateId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StateCreate'
+      responses:
+        '200':
+          description: The updated state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/State'
+    delete:
+      operationId: deleteState
+      tags:
+        - States
+      summary: Delete a state.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/StateId'
+      responses:
+        '204':
+          description: The state was deleted.
+  /workspaces/{workspace_slug}/projects/{project_id}/labels/:
+    get:
+      operationId: listLabels
+      tags:
+        - Labels
+      summary: List all labels in a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: A list of labels.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Label'
+    post:
+      operationId: createLabel
+      tags:
+        - Labels
+      summary: Create a label in a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelCreate'
+      responses:
+        '201':
+          description: The created label.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+  /workspaces/{workspace_slug}/projects/{project_id}/labels/{label_id}/:
+    get:
+      operationId: getLabel
+      tags:
+        - Labels
+      summary: Retrieve a label.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/LabelId'
+      responses:
+        '200':
+          description: The requested label.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+    patch:
+      operationId: updateLabel
+      tags:
+        - Labels
+      summary: Update a label.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/LabelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelCreate'
+      responses:
+        '200':
+          description: The updated label.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+    delete:
+      operationId: deleteLabel
+      tags:
+        - Labels
+      summary: Delete a label.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/LabelId'
+      responses:
+        '204':
+          description: The label was deleted.
+  /workspaces/{workspace_slug}/projects/{project_id}/members/:
+    get:
+      operationId: listProjectMembers
+      tags:
+        - Members
+      summary: List the members of a project.
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceSlug'
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: A list of project members.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Member'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: >-
+        API key generated from your Plane workspace settings. Pass it in the
+        X-API-Key header on every request.
+  parameters:
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    WorkItemId:
+      name: work_item_id
+      in: path
+      required: true
+      description: The UUID of the work item (issue).
+      schema:
+        type: string
+        format: uuid
+    CommentId:
+      name: comment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    CycleId:
+      name: cycle_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ModuleId:
+      name: module_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    StateId:
+      name: state_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    LabelId:
+      name: label_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    Cursor:
+      name: cursor
+      in: query
+      required: false
+      description: Cursor for cursor-based pagination, in the form value:offset:page.
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of results to return per page (default 20, max 100).
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status_code:
+          type: integer
+    Pagination:
+      type: object
+      properties:
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+        next_page_results:
+          type: boolean
+        prev_page_results:
+          type: boolean
+        total_results:
+          type: integer
+        total_pages:
+          type: integer
+        per_page:
+          type: integer
+    PaginatedProjects:
+      allOf:
+        - $ref: '#/components/schemas/Pagination'
+        - type: object
+          properties:
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/Project'
+    PaginatedWorkItems:
+      allOf:
+        - $ref: '#/components/schemas/Pagination'
+        - type: object
+          properties:
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/WorkItem'
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        identifier:
+          type: string
+          description: Short prefix used in work item identifiers (e.g. PROJ).
+        description:
+          type: string
+        network:
+          type: integer
+          description: 0 for secret, 2 for public within the workspace.
+        workspace:
+          type: string
+          format: uuid
+        project_lead:
+          type: string
+          format: uuid
+        default_assignee:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    ProjectCreate:
+      type: object
+      required:
+        - name
+        - identifier
+      properties:
+        name:
+          type: string
+        identifier:
+          type: string
+        description:
+          type: string
+        network:
+          type: integer
+        project_lead:
+          type: string
+          format: uuid
+        default_assignee:
+          type: string
+          format: uuid
+    WorkItem:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description_html:
+          type: string
+        priority:
+          type: string
+          enum: [urgent, high, medium, low, none]
+        state:
+          type: string
+          format: uuid
+        assignees:
+          type: array
+          items:
+            type: string
+            format: uuid
+        labels:
+          type: array
+          items:
+            type: string
+            format: uuid
+        sequence_id:
+          type: integer
+        sort_order:
+          type: number
+        start_date:
+          type: string
+          format: date
+        target_date:
+          type: string
+          format: date
+        project:
+          type: string
+          format: uuid
+        workspace:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    WorkItemCreate:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description_html:
+          type: string
+        priority:
+          type: string
+          enum: [urgent, high, medium, low, none]
+        state:
+          type: string
+          format: uuid
+        assignees:
+          type: array
+          items:
+            type: string
+            format: uuid
+        labels:
+          type: array
+          items:
+            type: string
+            format: uuid
+        start_date:
+          type: string
+          format: date
+        target_date:
+          type: string
+          format: date
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        comment_html:
+          type: string
+        comment_stripped:
+          type: string
+        access:
+          type: string
+          enum: [INTERNAL, EXTERNAL]
+        actor:
+          type: string
+          format: uuid
+        issue:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+    CommentCreate:
+      type: object
+      required:
+        - comment_html
+      properties:
+        comment_html:
+          type: string
+        access:
+          type: string
+          enum: [INTERNAL, EXTERNAL]
+    Link:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+        issue:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+    LinkCreate:
+      type: object
+      required:
+        - url
+      properties:
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+    Cycle:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        owned_by:
+          type: string
+          format: uuid
+        project:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+    CycleCreate:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+    Module:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        start_date:
+          type: string
+          format: date
+        target_date:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [backlog, planned, in-progress, paused, completed, cancelled]
+        lead:
+          type: string
+          format: uuid
+        members:
+          type: array
+          items:
+            type: string
+            format: uuid
+        project:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+    ModuleCreate:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        start_date:
+          type: string
+          format: date
+        target_date:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [backlog, planned, in-progress, paused, completed, cancelled]
+        lead:
+          type: string
+          format: uuid
+        members:
+          type: array
+          items:
+            type: string
+            format: uuid
+    State:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        group:
+          type: string
+          enum: [backlog, unstarted, started, completed, cancelled]
+        sequence:
+          type: number
+        project:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+    StateCreate:
+      type: object
+      required:
+        - name
+        - color
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        group:
+          type: string
+          enum: [backlog, unstarted, started, completed, cancelled]
+    Label:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        parent:
+          type: string
+          format: uuid
+        project:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+    LabelCreate:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        parent:
+          type: string
+          format: uuid
+    Member:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        member:
+          type: string
+          format: uuid
+        role:
+          type: integer
+          description: Role within the project (e.g. 20 Admin, 15 Member, 5 Guest).
+        project:
+          type: string
+          format: uuid
+        workspace:
+          type: string
+          format: uuid
