@@ -1,0 +1,794 @@
+{
+  "item": [
+    {
+      "id": "1da514d1-65ee-4ba9-98bc-17a3f95d68de",
+      "name": "Work Item Links",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "138d6975-471c-4c23-b9c8-83c245fb8235",
+          "name": "List links on a work item.",
+          "request": {
+            "name": "List links on a work item.",
+            "description": {},
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspace_slug",
+                "projects",
+                ":project_id",
+                "work-items",
+                ":work_item_id",
+                "links",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_slug",
+                  "description": "(Required) The unique slug of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) The UUID of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "work_item_id",
+                  "description": "(Required) The UUID of the work item (issue)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c62e95ce-b557-4460-a7f0-97b3ca0106dc",
+              "name": "A list of links.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ":project_id",
+                    "work-items",
+                    ":work_item_id",
+                    "links",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) The UUID of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "work_item_id",
+                      "description": "(Required) The UUID of the work item (issue)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"9b8f9b20-8f24-0ec0-df72-e05f94c6929b\",\n    \"title\": \"string\",\n    \"url\": \"https://thlvjYERUbPVuNtuo.owbrr4jfNfDxVa3yaTGi6QvClZBlVAndOIbtsqi2T3EUtnlSypW0R3Iua-PnrzL\",\n    \"issue\": \"472bc74a-11b0-c9fa-96c4-0b1473ba4014\",\n    \"created_at\": \"1993-02-28T11:30:57.231Z\"\n  },\n  {\n    \"id\": \"9113d130-6a2a-c0a0-68a6-3d70c9f924d7\",\n    \"title\": \"string\",\n    \"url\": \"http://BY.wgpjPzArFGzMbLj\",\n    \"issue\": \"3d6bc32c-43d2-2aa0-960f-a2b3f255fbe7\",\n    \"created_at\": \"1952-07-20T02:20:45.316Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86521c24-32a5-4229-9420-85b7ae2d71c1",
+          "name": "Add a link to a work item.",
+          "request": {
+            "name": "Add a link to a work item.",
+            "description": {},
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspace_slug",
+                "projects",
+                ":project_id",
+                "work-items",
+                ":work_item_id",
+                "links",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_slug",
+                  "description": "(Required) The unique slug of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) The UUID of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "work_item_id",
+                  "description": "(Required) The UUID of the work item (issue)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"title\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99fee5ed-8573-4f0b-9603-fb4ae6a149eb",
+              "name": "The created link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ":project_id",
+                    "work-items",
+                    ":work_item_id",
+                    "links",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) The UUID of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "work_item_id",
+                      "description": "(Required) The UUID of the work item (issue)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"a4bca521-3655-8b99-0cfa-10130b643b7f\",\n  \"title\": \"string\",\n  \"url\": \"https://beENRqrQIIuKMZqaybIbKLOgR.ufjnEa2LIXBZUx5CXcneGXDIqVsbC0+,RpHVbtutJoaa1GmPstNE1x.79km\",\n  \"issue\": \"213668af-8f84-e52d-4c9c-f72c7910f476\",\n  \"created_at\": \"1956-05-21T16:09:01.630Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8f82989-88f1-4dba-981b-20b29812ad14",
+          "name": "Retrieve a work item link.",
+          "request": {
+            "name": "Retrieve a work item link.",
+            "description": {},
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspace_slug",
+                "projects",
+                ":project_id",
+                "work-items",
+                ":work_item_id",
+                "links",
+                ":link_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_slug",
+                  "description": "(Required) The unique slug of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) The UUID of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "work_item_id",
+                  "description": "(Required) The UUID of the work item (issue)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "link_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c3752b5-c605-4ced-82c6-3cbd1af4e9ef",
+              "name": "The requested link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ":project_id",
+                    "work-items",
+                    ":work_item_id",
+                    "links",
+                    ":link_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) The UUID of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "work_item_id",
+                      "description": "(Required) The UUID of the work item (issue)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "link_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"a4bca521-3655-8b99-0cfa-10130b643b7f\",\n  \"title\": \"string\",\n  \"url\": \"https://beENRqrQIIuKMZqaybIbKLOgR.ufjnEa2LIXBZUx5CXcneGXDIqVsbC0+,RpHVbtutJoaa1GmPstNE1x.79km\",\n  \"issue\": \"213668af-8f84-e52d-4c9c-f72c7910f476\",\n  \"created_at\": \"1956-05-21T16:09:01.630Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6aa8fd82-6b17-4599-8a5f-a3e68e793ae4",
+          "name": "Update a work item link.",
+          "request": {
+            "name": "Update a work item link.",
+            "description": {},
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspace_slug",
+                "projects",
+                ":project_id",
+                "work-items",
+                ":work_item_id",
+                "links",
+                ":link_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_slug",
+                  "description": "(Required) The unique slug of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) The UUID of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "work_item_id",
+                  "description": "(Required) The UUID of the work item (issue)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "link_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"title\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9060191-ef42-4df1-aeac-7a45c68a55c0",
+              "name": "The updated link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ":project_id",
+                    "work-items",
+                    ":work_item_id",
+                    "links",
+                    ":link_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) The UUID of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "work_item_id",
+                      "description": "(Required) The UUID of the work item (issue)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "link_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"a4bca521-3655-8b99-0cfa-10130b643b7f\",\n  \"title\": \"string\",\n  \"url\": \"https://beENRqrQIIuKMZqaybIbKLOgR.ufjnEa2LIXBZUx5CXcneGXDIqVsbC0+,RpHVbtutJoaa1GmPstNE1x.79km\",\n  \"issue\": \"213668af-8f84-e52d-4c9c-f72c7910f476\",\n  \"created_at\": \"1956-05-21T16:09:01.630Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83740262-a187-40f8-a37c-a8aa871ea2c5",
+          "name": "Delete a work item link.",
+          "request": {
+            "name": "Delete a work item link.",
+            "description": {},
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspace_slug",
+                "projects",
+                ":project_id",
+                "work-items",
+                ":work_item_id",
+                "links",
+                ":link_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_slug",
+                  "description": "(Required) The unique slug of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) The UUID of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "work_item_id",
+                  "description": "(Required) The UUID of the work item (issue)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "link_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4eb2efd4-da6f-4d16-9f32-62a2df2aee7b",
+              "name": "The link was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ":project_id",
+                    "work-items",
+                    ":work_item_id",
+                    "links",
+                    ":link_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) The UUID of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "work_item_id",
+                      "description": "(Required) The UUID of the work item (issue)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "link_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.plane.so/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ef671c9-67d9-4851-8b67-8a2eec497210",
+    "name": "Plane Cycle Work Items Work Item Links API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Plane, the open-source project and product management tool. The API is organized around REST with predictable, resource-oriented URLs, accepts JSON request bodies, returns JSON responses, and uses standard HTTP response codes and verbs. Resources are scoped to a workspace and project: workspaces contain projects, and projects contain work items (issues), cycles, modules, states, labels, and members. Authentication uses an X-API-Key header. This document covers Plane Cloud (https://api.plane.so); self-hosted Community Edition instances expose the same API under their own domain.\n\nContact Support:\n Name: Plane Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Plane Cycle Work Items Work Item Links API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Work Item Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List links on a work item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/links/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "work_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the work item (issue)."
+              }
+            ]
+          },
+          "docs": "List links on a work item."
+        },
+        {
+          "info": {
+            "name": "Add a link to a work item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/links/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "work_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the work item (issue)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a link to a work item."
+        },
+        {
+          "info": {
+            "name": "Retrieve a work item link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/links/:link_id/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "work_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the work item (issue)."
+              },
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a work item link."
+        },
+        {
+          "info": {
+            "name": "Update a work item link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/links/:link_id/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "work_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the work item (issue)."
+              },
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a work item link."
+        },
+        {
+          "info": {
+            "name": "Delete a work item link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/work-items/:work_item_id/links/:link_id/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "work_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the work item (issue)."
+              },
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a work item link."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

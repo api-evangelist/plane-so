@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Plane Cycle Work Items Members API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Members",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the members of a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/members/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              }
+            ]
+          },
+          "docs": "List the members of a project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

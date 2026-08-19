@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Plane Cycle Work Items Projects API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all projects in a workspace.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for cursor-based pagination, in the form value:offset:page."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page (default 20, max 100)."
+              }
+            ]
+          },
+          "docs": "List all projects in a workspace."
+        },
+        {
+          "info": {
+            "name": "Create a project in a workspace.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a project in a workspace."
+        },
+        {
+          "info": {
+            "name": "Retrieve a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              }
+            ]
+          },
+          "docs": "Retrieve a project."
+        },
+        {
+          "info": {
+            "name": "Update a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a project."
+        },
+        {
+          "info": {
+            "name": "Delete a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              }
+            ]
+          },
+          "docs": "Delete a project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

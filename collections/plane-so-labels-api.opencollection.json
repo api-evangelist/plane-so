@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Plane Cycle Work Items Labels API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Labels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all labels in a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/labels/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              }
+            ]
+          },
+          "docs": "List all labels in a project."
+        },
+        {
+          "info": {
+            "name": "Create a label in a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/labels/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a label in a project."
+        },
+        {
+          "info": {
+            "name": "Retrieve a label.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/labels/:label_id/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "label_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a label."
+        },
+        {
+          "info": {
+            "name": "Update a label.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/labels/:label_id/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "label_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a label."
+        },
+        {
+          "info": {
+            "name": "Delete a label.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/labels/:label_id/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "label_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a label."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

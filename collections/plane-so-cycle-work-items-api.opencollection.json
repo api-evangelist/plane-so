@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Plane Cycle Work Items API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cycle Work Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the work items in a cycle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/cycles/:cycle_id/work-items/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "cycle_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List the work items in a cycle."
+        },
+        {
+          "info": {
+            "name": "Add work items to a cycle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/cycles/:cycle_id/work-items/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "cycle_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add work items to a cycle."
+        },
+        {
+          "info": {
+            "name": "Remove a work item from a cycle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/cycles/:cycle_id/work-items/:work_item_id/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "cycle_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "work_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the work item (issue)."
+              }
+            ]
+          },
+          "docs": "Remove a work item from a cycle."
+        },
+        {
+          "info": {
+            "name": "Transfer incomplete work items to another cycle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.plane.so/api/v1/workspaces/:workspace_slug/projects/:project_id/cycles/:cycle_id/transfer-work-items/",
+            "params": [
+              {
+                "name": "workspace_slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug of the workspace."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the project."
+              },
+              {
+                "name": "cycle_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transfer incomplete work items to another cycle."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

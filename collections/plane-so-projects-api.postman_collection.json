@@ -1,0 +1,823 @@
+{
+  "item": [
+    {
+      "id": "5f2cd846-4850-4282-8c53-56127836ffe4",
+      "name": "Projects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "026d284e-93ba-4b9d-ae74-2755074fca58",
+          "name": "List all projects in a workspace.",
+          "request": {
+            "name": "List all projects in a workspace.",
+            "description": {},
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspace_slug",
+                "projects",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Cursor for cursor-based pagination, in the form value:offset:page."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page (default 20, max 100)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_slug",
+                  "description": "(Required) The unique slug of the workspace."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca8e7a07-d7e3-4b8b-97c9-a29b995bf408",
+              "name": "A paginated list of projects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"next_cursor\": \"string\",\n  \"prev_cursor\": \"string\",\n  \"next_page_results\": false,\n  \"prev_page_results\": true,\n  \"total_results\": 1706,\n  \"total_pages\": 7039,\n  \"per_page\": 9346,\n  \"results\": [\n    {\n      \"id\": \"fb7174c3-03e2-ab0a-73a7-4255b677e144\",\n      \"name\": \"string\",\n      \"identifier\": \"string\",\n      \"description\": \"string\",\n      \"network\": 8852,\n      \"workspace\": \"512916ad-cf0d-ed4a-c9ad-2cb8f70bf31c\",\n      \"project_lead\": \"62295630-5e39-86b7-c873-82d1ec6a8a32\",\n      \"default_assignee\": \"7b6a8461-8cb6-5e80-2965-add7d0a30c1b\",\n      \"created_at\": \"1973-10-30T02:55:53.308Z\",\n      \"updated_at\": \"1999-01-02T02:18:48.931Z\"\n    },\n    {\n      \"id\": \"f38b2930-c46e-2c9d-3060-f6733477feb4\",\n      \"name\": \"string\",\n      \"identifier\": \"string\",\n      \"description\": \"string\",\n      \"network\": 5784,\n      \"workspace\": \"f8d575fb-f553-07d3-db10-1a9c89407e67\",\n      \"project_lead\": \"db51a91c-b7c7-110c-d440-7232dad7bd19\",\n      \"default_assignee\": \"fd901ae0-fecb-1936-ec7d-dac89c225cbc\",\n      \"created_at\": \"2002-05-31T11:39:33.253Z\",\n      \"updated_at\": \"1956-05-13T05:07:37.573Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1d5ea86-d804-4196-a4a8-f6d705faf7f7",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status_code\": 7111\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "623b06df-43ac-46ce-8736-7af8c3390714",
+          "name": "Create a project in a workspace.",
+          "request": {
+            "name": "Create a project in a workspace.",
+            "description": {},
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspace_slug",
+                "projects",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_slug",
+                  "description": "(Required) The unique slug of the workspace."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"network\": \"<integer>\",\n  \"project_lead\": \"<uuid>\",\n  \"default_assignee\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98d03202-c0d4-4384-a11e-365e3634549e",
+              "name": "The created project.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"network\": \"<integer>\",\n  \"project_lead\": \"<uuid>\",\n  \"default_assignee\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"f7a33f64-d2e4-8ff3-9132-d023c1a3f632\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"description\": \"string\",\n  \"network\": 4795,\n  \"workspace\": \"81e287ca-e33b-8576-6018-d5762fd05252\",\n  \"project_lead\": \"9538f381-5086-c3af-90b3-897d5d272018\",\n  \"default_assignee\": \"b713cd03-0161-c0c7-7a7e-8746894acc4a\",\n  \"created_at\": \"2008-04-02T16:47:00.284Z\",\n  \"updated_at\": \"1953-09-29T13:18:47.854Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed502cc2-7c92-40de-a42f-41ae6c199955",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"network\": \"<integer>\",\n  \"project_lead\": \"<uuid>\",\n  \"default_assignee\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status_code\": 7111\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c83ec1d-da67-4c91-8729-08a47a7bfa7b",
+          "name": "Retrieve a project.",
+          "request": {
+            "name": "Retrieve a project.",
+            "description": {},
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspace_slug",
+                "projects",
+                ":project_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_slug",
+                  "description": "(Required) The unique slug of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) The UUID of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7856597-67db-4856-afe2-5f93d1a2fd7d",
+              "name": "The requested project.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ":project_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) The UUID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"f7a33f64-d2e4-8ff3-9132-d023c1a3f632\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"description\": \"string\",\n  \"network\": 4795,\n  \"workspace\": \"81e287ca-e33b-8576-6018-d5762fd05252\",\n  \"project_lead\": \"9538f381-5086-c3af-90b3-897d5d272018\",\n  \"default_assignee\": \"b713cd03-0161-c0c7-7a7e-8746894acc4a\",\n  \"created_at\": \"2008-04-02T16:47:00.284Z\",\n  \"updated_at\": \"1953-09-29T13:18:47.854Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "491913fd-58d4-48fb-aa96-ee0b7cc2b34e",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ":project_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) The UUID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status_code\": 7111\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f1d5b87-9a72-435a-92b3-707b1c35bd9d",
+          "name": "Update a project.",
+          "request": {
+            "name": "Update a project.",
+            "description": {},
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspace_slug",
+                "projects",
+                ":project_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_slug",
+                  "description": "(Required) The unique slug of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) The UUID of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"network\": \"<integer>\",\n  \"project_lead\": \"<uuid>\",\n  \"default_assignee\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3356e9ed-8f1b-4d52-b689-823c5d2f2453",
+              "name": "The updated project.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ":project_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) The UUID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"network\": \"<integer>\",\n  \"project_lead\": \"<uuid>\",\n  \"default_assignee\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"f7a33f64-d2e4-8ff3-9132-d023c1a3f632\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"description\": \"string\",\n  \"network\": 4795,\n  \"workspace\": \"81e287ca-e33b-8576-6018-d5762fd05252\",\n  \"project_lead\": \"9538f381-5086-c3af-90b3-897d5d272018\",\n  \"default_assignee\": \"b713cd03-0161-c0c7-7a7e-8746894acc4a\",\n  \"created_at\": \"2008-04-02T16:47:00.284Z\",\n  \"updated_at\": \"1953-09-29T13:18:47.854Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "695a731c-fb49-449e-8567-7bb9b4e0bb9f",
+          "name": "Delete a project.",
+          "request": {
+            "name": "Delete a project.",
+            "description": {},
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspace_slug",
+                "projects",
+                ":project_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_slug",
+                  "description": "(Required) The unique slug of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) The UUID of the project."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50244ca1-e115-42ba-838b-05317604a516",
+              "name": "The project was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspace_slug",
+                    "projects",
+                    ":project_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_slug",
+                      "description": "(Required) The unique slug of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) The UUID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.plane.so/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "919a7a70-a379-4258-b31e-46749e78b81d",
+    "name": "Plane Cycle Work Items Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Plane, the open-source project and product management tool. The API is organized around REST with predictable, resource-oriented URLs, accepts JSON request bodies, returns JSON responses, and uses standard HTTP response codes and verbs. Resources are scoped to a workspace and project: workspaces contain projects, and projects contain work items (issues), cycles, modules, states, labels, and members. Authentication uses an X-API-Key header. This document covers Plane Cloud (https://api.plane.so); self-hosted Community Edition instances expose the same API under their own domain.\n\nContact Support:\n Name: Plane Support",
+      "type": "text/plain"
+    }
+  }
+}
