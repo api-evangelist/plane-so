@@ -25,6 +25,12 @@ tags:
 - Project Management
 - Issue Tracking
 - Work Management
+- Open-Source
+- Productivity
+tags_raw:
+- Project Management
+- Issue Tracking
+- Work Management
 - Open Source
 - Productivity
 created: '2026-06-21'
@@ -217,6 +223,8 @@ apis:
   humanURL: https://developers.plane.so/api-reference/project/overview
   baseURL: https://api.plane.so/api/v1
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
