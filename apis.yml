@@ -7,6 +7,18 @@ description: Plane is an open-source project and product management tool for pla
   is available as a self-hosted Community Edition (AGPL v3.0) and as Plane Cloud, and
   exposes a REST API at https://api.plane.so/api/v1 secured with an X-API-Key header
   for managing projects, work items, cycles, modules, states, labels, and members.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
