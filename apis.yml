@@ -2,11 +2,7 @@ aid: plane-so
 url: https://raw.githubusercontent.com/api-evangelist/plane-so/refs/heads/main/apis.yml
 name: Plane
 kind: company
-description: Plane is an open-source project and product management tool for planning,
-  tracking, and shipping work across workspaces, projects, cycles, and modules. It
-  is available as a self-hosted Community Edition (AGPL v3.0) and as Plane Cloud, and
-  exposes a REST API at https://api.plane.so/api/v1 secured with an X-API-Key header
-  for managing projects, work items, cycles, modules, states, labels, and members.
+description: Plane is an open-source project and product management tool for planning, tracking, and shipping work across workspaces, projects, cycles, and modules. It is available as a self-hosted Community Edition (AGPL v3.0) and as Plane Cloud, and exposes a REST API at https://api.plane.so/api/v1 secured with an X-API-Key header for managing projects, work items, cycles, modules, states, labels, and members.
 deliveryModel:
   model: saas
   open_source: false
@@ -381,6 +377,24 @@ apis:
     url: https://developers.plane.so/api-reference/label/overview
   - type: Documentation
     url: https://developers.plane.so/api-reference/member/overview
+- name: Plane REST API
+  description: The Plane REST API provides 180+ endpoints for managing all aspects of project management workspaces including projects, work items, cycles, modules, pages, analytics, intake, and team members. The API uses standard HTTP verbs, cursor-based pagination, and JSON request/response bodies with predictable resource-oriented URLs. Authentication is supported via personal access tokens (X-API-Key header) or OAuth 2.0 bearer tokens for third-party applications.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.plane.so/api-reference/introduction
+  baseURL: https://api.plane.so/api/v1/
+  tags:
+  - Project Management
+  - Issues
+  - Cycles
+  - Modules
+  - Pages
+  - Analytics
+  - Workspace
+  properties:
+  - type: Documentation
+    url: https://developers.plane.so/api-reference/introduction
+  - type: OpenAPI
+    url: https://developers.plane.so/api-reference/introduction
 common:
 - type: AgenticAccess
   url: agentic-access/plane-so-agentic-access.yml
