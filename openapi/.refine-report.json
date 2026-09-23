@@ -1,17 +1,7 @@
 {
   "provider": "plane-so",
   "sources": [
-    "plane-so-cycle-work-items-api-openapi.yml",
-    "plane-so-cycles-api-openapi.yml",
-    "plane-so-labels-api-openapi.yml",
-    "plane-so-members-api-openapi.yml",
-    "plane-so-module-work-items-api-openapi.yml",
-    "plane-so-modules-api-openapi.yml",
-    "plane-so-projects-api-openapi.yml",
-    "plane-so-states-api-openapi.yml",
-    "plane-so-work-item-comments-api-openapi.yml",
-    "plane-so-work-item-links-api-openapi.yml",
-    "plane-so-work-items-api-openapi.yml"
+    "_original/plane-so-openapi.yml"
   ],
   "outputs": [
     "plane-so-cycle-work-items-api-openapi.yml",
@@ -29,6 +19,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "plane-so-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "plane-so-cycle-work-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "plane-so-cycles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "plane-so-labels-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "plane-so-members-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "plane-so-module-work-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "plane-so-modules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "plane-so-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "plane-so-states-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "plane-so-work-item-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "plane-so-work-item-links-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "plane-so-work-items-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

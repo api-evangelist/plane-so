@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Plane Cycle Work Items Cycles API
-  description: 'REST API for Plane, the open-source project and product management tool. The API is organized around REST with predictable, resource-oriented URLs, accepts JSON request bodies, returns JSON responses, and uses standard HTTP response codes and verbs. Resources are scoped to a workspace and project: workspaces contain projects, and projects contain work items (issues), cycles, modules, states, labels, and members. Authentication uses an X-API-Key header. This document covers Plane Cloud (https://api.plane.so); self-hosted Community Edition instances expose the same API under their own domain.'
+  title: Plane Cycles API
+  description: REST API for Plane, the open-source project and product management tool.
   termsOfService: https://plane.so/legals/terms-and-conditions
   contact:
     name: Plane Support
@@ -23,7 +23,7 @@ paths:
       operationId: listCycles
       tags:
       - Cycles
-      summary: List all cycles in a project.
+      summary: List all cycles in a project
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -40,7 +40,7 @@ paths:
       operationId: createCycle
       tags:
       - Cycles
-      summary: Create a cycle in a project.
+      summary: Create a cycle in a project
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -62,7 +62,7 @@ paths:
       operationId: getCycle
       tags:
       - Cycles
-      summary: Retrieve a cycle.
+      summary: Retrieve a cycle
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -78,7 +78,7 @@ paths:
       operationId: updateCycle
       tags:
       - Cycles
-      summary: Update a cycle.
+      summary: Update a cycle
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -100,7 +100,7 @@ paths:
       operationId: deleteCycle
       tags:
       - Cycles
-      summary: Delete a cycle.
+      summary: Delete a cycle
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -110,21 +110,6 @@ paths:
           description: The cycle was deleted.
 components:
   schemas:
-    CycleCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
     Cycle:
       type: object
       properties:
@@ -150,19 +135,34 @@ components:
         created_at:
           type: string
           format: date-time
+    CycleCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
   parameters:
-    CycleId:
-      name: cycle_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
     ProjectId:
       name: project_id
       in: path
       required: true
       description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    CycleId:
+      name: cycle_id
+      in: path
+      required: true
       schema:
         type: string
         format: uuid

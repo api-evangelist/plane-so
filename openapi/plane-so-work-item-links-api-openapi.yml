@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Plane Cycle Work Items Work Item Links API
-  description: 'REST API for Plane, the open-source project and product management tool. The API is organized around REST with predictable, resource-oriented URLs, accepts JSON request bodies, returns JSON responses, and uses standard HTTP response codes and verbs. Resources are scoped to a workspace and project: workspaces contain projects, and projects contain work items (issues), cycles, modules, states, labels, and members. Authentication uses an X-API-Key header. This document covers Plane Cloud (https://api.plane.so); self-hosted Community Edition instances expose the same API under their own domain.'
+  title: Plane Work Item Links API
+  description: REST API for Plane, the open-source project and product management tool.
   termsOfService: https://plane.so/legals/terms-and-conditions
   contact:
     name: Plane Support
@@ -23,7 +23,7 @@ paths:
       operationId: listWorkItemLinks
       tags:
       - Work Item Links
-      summary: List links on a work item.
+      summary: List links on a work item
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -41,7 +41,7 @@ paths:
       operationId: createWorkItemLink
       tags:
       - Work Item Links
-      summary: Add a link to a work item.
+      summary: Add a link to a work item
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -64,7 +64,7 @@ paths:
       operationId: getWorkItemLink
       tags:
       - Work Item Links
-      summary: Retrieve a work item link.
+      summary: Retrieve a work item link
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -81,7 +81,7 @@ paths:
       operationId: updateWorkItemLink
       tags:
       - Work Item Links
-      summary: Update a work item link.
+      summary: Update a work item link
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -104,7 +104,7 @@ paths:
       operationId: deleteWorkItemLink
       tags:
       - Work Item Links
-      summary: Delete a work item link.
+      summary: Delete a work item link
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -114,48 +114,7 @@ paths:
         '204':
           description: The link was deleted.
 components:
-  parameters:
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
-    LinkId:
-      name: link_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    WorkItemId:
-      name: work_item_id
-      in: path
-      required: true
-      description: The UUID of the work item (issue).
-      schema:
-        type: string
-        format: uuid
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
   schemas:
-    LinkCreate:
-      type: object
-      required:
-      - url
-      properties:
-        title:
-          type: string
-        url:
-          type: string
-          format: uri
     Link:
       type: object
       properties:
@@ -173,6 +132,47 @@ components:
         created_at:
           type: string
           format: date-time
+    LinkCreate:
+      type: object
+      required:
+      - url
+      properties:
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    WorkItemId:
+      name: work_item_id
+      in: path
+      required: true
+      description: The UUID of the work item (issue).
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Plane Cycle Work Items Members API
-  description: 'REST API for Plane, the open-source project and product management tool. The API is organized around REST with predictable, resource-oriented URLs, accepts JSON request bodies, returns JSON responses, and uses standard HTTP response codes and verbs. Resources are scoped to a workspace and project: workspaces contain projects, and projects contain work items (issues), cycles, modules, states, labels, and members. Authentication uses an X-API-Key header. This document covers Plane Cloud (https://api.plane.so); self-hosted Community Edition instances expose the same API under their own domain.'
+  title: Plane Members API
+  description: REST API for Plane, the open-source project and product management tool.
   termsOfService: https://plane.so/legals/terms-and-conditions
   contact:
     name: Plane Support
@@ -23,7 +23,7 @@ paths:
       operationId: listProjectMembers
       tags:
       - Members
-      summary: List the members of a project.
+      summary: List the members of a project
       parameters:
       - $ref: '#/components/parameters/WorkspaceSlug'
       - $ref: '#/components/parameters/ProjectId'
@@ -39,32 +39,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  schemas:
-    Member:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        member:
-          type: string
-          format: uuid
-        role:
-          type: integer
-          description: Role within the project (e.g. 20 Admin, 15 Member, 5 Guest).
-        project:
-          type: string
-          format: uuid
-        workspace:
-          type: string
-          format: uuid
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status_code:
-          type: integer
   responses:
     Unauthorized:
       description: The API key is missing or invalid.
@@ -88,6 +62,32 @@ components:
       description: The unique slug of the workspace.
       schema:
         type: string
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status_code:
+          type: integer
+    Member:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        member:
+          type: string
+          format: uuid
+        role:
+          type: integer
+          description: Role within the project (e.g. 20 Admin, 15 Member, 5 Guest).
+        project:
+          type: string
+          format: uuid
+        workspace:
+          type: string
+          format: uuid
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
