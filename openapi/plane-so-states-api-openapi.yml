@@ -109,6 +109,29 @@ paths:
         '204':
           description: The state was deleted.
 components:
+  parameters:
+    StateId:
+      name: state_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
   schemas:
     State:
       type: object
@@ -158,29 +181,6 @@ components:
           - started
           - completed
           - cancelled
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
-    StateId:
-      name: state_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

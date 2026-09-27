@@ -114,37 +114,6 @@ paths:
         '204':
           description: The comment was deleted.
 components:
-  parameters:
-    CommentId:
-      name: comment_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
-    WorkItemId:
-      name: work_item_id
-      in: path
-      required: true
-      description: The UUID of the work item (issue).
-      schema:
-        type: string
-        format: uuid
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
   schemas:
     CommentCreate:
       type: object
@@ -182,6 +151,37 @@ components:
         created_at:
           type: string
           format: date-time
+  parameters:
+    WorkItemId:
+      name: work_item_id
+      in: path
+      required: true
+      description: The UUID of the work item (issue).
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
+    CommentId:
+      name: comment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

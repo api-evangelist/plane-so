@@ -143,21 +143,6 @@ components:
           type: string
           format: uri
   parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
-    LinkId:
-      name: link_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
     WorkItemId:
       name: work_item_id
       in: path
@@ -173,6 +158,21 @@ components:
       description: The unique slug of the workspace.
       schema:
         type: string
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

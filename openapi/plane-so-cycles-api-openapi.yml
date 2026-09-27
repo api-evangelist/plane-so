@@ -109,6 +109,29 @@ paths:
         '204':
           description: The cycle was deleted.
 components:
+  parameters:
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
+    CycleId:
+      name: cycle_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
   schemas:
     Cycle:
       type: object
@@ -150,29 +173,6 @@ components:
         end_date:
           type: string
           format: date
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
-    CycleId:
-      name: cycle_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

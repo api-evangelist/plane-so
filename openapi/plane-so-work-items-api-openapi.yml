@@ -109,45 +109,16 @@ paths:
         '204':
           description: The work item was deleted.
 components:
-  parameters:
-    Cursor:
-      name: cursor
-      in: query
-      required: false
-      description: Cursor for cursor-based pagination, in the form value:offset:page.
-      schema:
-        type: string
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
-    WorkItemId:
-      name: work_item_id
-      in: path
-      required: true
-      description: The UUID of the work item (issue).
-      schema:
-        type: string
-        format: uuid
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      description: Number of results to return per page (default 20, max 100).
-      schema:
-        type: integer
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
   schemas:
+    PaginatedWorkItems:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/WorkItem'
     WorkItem:
       type: object
       properties:
@@ -201,15 +172,23 @@ components:
         updated_at:
           type: string
           format: date-time
-    PaginatedWorkItems:
-      allOf:
-      - $ref: '#/components/schemas/Pagination'
-      - type: object
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/WorkItem'
+    Pagination:
+      type: object
+      properties:
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+        next_page_results:
+          type: boolean
+        prev_page_results:
+          type: boolean
+        total_results:
+          type: integer
+        total_pages:
+          type: integer
+        per_page:
+          type: integer
     WorkItemCreate:
       type: object
       required:
@@ -246,23 +225,44 @@ components:
         target_date:
           type: string
           format: date
-    Pagination:
-      type: object
-      properties:
-        next_cursor:
-          type: string
-        prev_cursor:
-          type: string
-        next_page_results:
-          type: boolean
-        prev_page_results:
-          type: boolean
-        total_results:
-          type: integer
-        total_pages:
-          type: integer
-        per_page:
-          type: integer
+  parameters:
+    WorkItemId:
+      name: work_item_id
+      in: path
+      required: true
+      description: The UUID of the work item (issue).
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of results to return per page (default 20, max 100).
+      schema:
+        type: integer
+    Cursor:
+      name: cursor
+      in: query
+      required: false
+      description: Cursor for cursor-based pagination, in the form value:offset:page.
+      schema:
+        type: string
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
