@@ -109,29 +109,6 @@ paths:
         '204':
           description: The module was deleted.
 components:
-  parameters:
-    ModuleId:
-      name: module_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
   schemas:
     ModuleCreate:
       type: object
@@ -204,6 +181,29 @@ components:
         created_at:
           type: string
           format: date-time
+  parameters:
+    ModuleId:
+      name: module_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

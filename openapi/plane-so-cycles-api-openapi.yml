@@ -110,20 +110,6 @@ paths:
           description: The cycle was deleted.
 components:
   parameters:
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
-    CycleId:
-      name: cycle_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
     ProjectId:
       name: project_id
       in: path
@@ -132,6 +118,20 @@ components:
       schema:
         type: string
         format: uuid
+    CycleId:
+      name: cycle_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
   schemas:
     Cycle:
       type: object

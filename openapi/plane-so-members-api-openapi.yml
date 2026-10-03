@@ -66,13 +66,6 @@ components:
           type: string
           format: uuid
   parameters:
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
     ProjectId:
       name: project_id
       in: path
@@ -81,6 +74,13 @@ components:
       schema:
         type: string
         format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: The API key is missing or invalid.

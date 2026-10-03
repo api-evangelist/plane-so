@@ -110,6 +110,59 @@ paths:
           description: The work item was deleted.
 components:
   schemas:
+    WorkItemCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description_html:
+          type: string
+        priority:
+          type: string
+          enum:
+          - urgent
+          - high
+          - medium
+          - low
+          - none
+        state:
+          type: string
+          format: uuid
+        assignees:
+          type: array
+          items:
+            type: string
+            format: uuid
+        labels:
+          type: array
+          items:
+            type: string
+            format: uuid
+        start_date:
+          type: string
+          format: date
+        target_date:
+          type: string
+          format: date
+    Pagination:
+      type: object
+      properties:
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+        next_page_results:
+          type: boolean
+        prev_page_results:
+          type: boolean
+        total_results:
+          type: integer
+        total_pages:
+          type: integer
+        per_page:
+          type: integer
     PaginatedWorkItems:
       allOf:
       - $ref: '#/components/schemas/Pagination'
@@ -172,65 +225,26 @@ components:
         updated_at:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        next_cursor:
-          type: string
-        prev_cursor:
-          type: string
-        next_page_results:
-          type: boolean
-        prev_page_results:
-          type: boolean
-        total_results:
-          type: integer
-        total_pages:
-          type: integer
-        per_page:
-          type: integer
-    WorkItemCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description_html:
-          type: string
-        priority:
-          type: string
-          enum:
-          - urgent
-          - high
-          - medium
-          - low
-          - none
-        state:
-          type: string
-          format: uuid
-        assignees:
-          type: array
-          items:
-            type: string
-            format: uuid
-        labels:
-          type: array
-          items:
-            type: string
-            format: uuid
-        start_date:
-          type: string
-          format: date
-        target_date:
-          type: string
-          format: date
   parameters:
-    WorkItemId:
-      name: work_item_id
+    Cursor:
+      name: cursor
+      in: query
+      required: false
+      description: Cursor for cursor-based pagination, in the form value:offset:page.
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of results to return per page (default 20, max 100).
+      schema:
+        type: integer
+    ProjectId:
+      name: project_id
       in: path
       required: true
-      description: The UUID of the work item (issue).
+      description: The UUID of the project.
       schema:
         type: string
         format: uuid
@@ -241,25 +255,11 @@ components:
       description: The unique slug of the workspace.
       schema:
         type: string
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      description: Number of results to return per page (default 20, max 100).
-      schema:
-        type: integer
-    Cursor:
-      name: cursor
-      in: query
-      required: false
-      description: Cursor for cursor-based pagination, in the form value:offset:page.
-      schema:
-        type: string
-    ProjectId:
-      name: project_id
+    WorkItemId:
+      name: work_item_id
       in: path
       required: true
-      description: The UUID of the project.
+      description: The UUID of the work item (issue).
       schema:
         type: string
         format: uuid

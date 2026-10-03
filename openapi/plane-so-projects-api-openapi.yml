@@ -111,13 +111,6 @@ paths:
           description: The project was deleted.
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status_code:
-          type: integer
     PaginatedProjects:
       allOf:
       - $ref: '#/components/schemas/Pagination'
@@ -127,6 +120,13 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Project'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status_code:
+          type: integer
     ProjectCreate:
       type: object
       required:
@@ -195,7 +195,34 @@ components:
         updated_at:
           type: string
           format: date-time
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
+    Cursor:
+      name: cursor
+      in: query
+      required: false
+      description: Cursor for cursor-based pagination, in the form value:offset:page.
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of results to return per page (default 20, max 100).
+      schema:
+        type: integer
     ProjectId:
       name: project_id
       in: path
@@ -211,33 +238,6 @@ components:
       description: The unique slug of the workspace.
       schema:
         type: string
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      description: Number of results to return per page (default 20, max 100).
-      schema:
-        type: integer
-    Cursor:
-      name: cursor
-      in: query
-      required: false
-      description: Cursor for cursor-based pagination, in the form value:offset:page.
-      schema:
-        type: string
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

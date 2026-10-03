@@ -100,11 +100,18 @@ paths:
           description: The work items were transferred.
 components:
   parameters:
-    WorkItemId:
-      name: work_item_id
+    ProjectId:
+      name: project_id
       in: path
       required: true
-      description: The UUID of the work item (issue).
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    CycleId:
+      name: cycle_id
+      in: path
+      required: true
       schema:
         type: string
         format: uuid
@@ -115,18 +122,11 @@ components:
       description: The unique slug of the workspace.
       schema:
         type: string
-    CycleId:
-      name: cycle_id
+    WorkItemId:
+      name: work_item_id
       in: path
       required: true
-      schema:
-        type: string
-        format: uuid
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
+      description: The UUID of the work item (issue).
       schema:
         type: string
         format: uuid

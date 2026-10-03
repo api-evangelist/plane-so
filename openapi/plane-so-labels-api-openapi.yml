@@ -109,21 +109,30 @@ paths:
         '204':
           description: The label was deleted.
 components:
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
+    LabelId:
+      name: label_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   schemas:
-    LabelCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        color:
-          type: string
-        parent:
-          type: string
-          format: uuid
     Label:
       type: object
       properties:
@@ -145,29 +154,20 @@ components:
         created_at:
           type: string
           format: date-time
-  parameters:
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
-    LabelId:
-      name: label_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
+    LabelCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        parent:
+          type: string
+          format: uuid
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

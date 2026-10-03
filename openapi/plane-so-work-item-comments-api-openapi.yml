@@ -115,18 +115,6 @@ paths:
           description: The comment was deleted.
 components:
   schemas:
-    CommentCreate:
-      type: object
-      required:
-      - comment_html
-      properties:
-        comment_html:
-          type: string
-        access:
-          type: string
-          enum:
-          - INTERNAL
-          - EXTERNAL
     Comment:
       type: object
       properties:
@@ -151,22 +139,19 @@ components:
         created_at:
           type: string
           format: date-time
+    CommentCreate:
+      type: object
+      required:
+      - comment_html
+      properties:
+        comment_html:
+          type: string
+        access:
+          type: string
+          enum:
+          - INTERNAL
+          - EXTERNAL
   parameters:
-    WorkItemId:
-      name: work_item_id
-      in: path
-      required: true
-      description: The UUID of the work item (issue).
-      schema:
-        type: string
-        format: uuid
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
     CommentId:
       name: comment_id
       in: path
@@ -182,6 +167,21 @@ components:
       schema:
         type: string
         format: uuid
+    WorkItemId:
+      name: work_item_id
+      in: path
+      required: true
+      description: The UUID of the work item (issue).
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

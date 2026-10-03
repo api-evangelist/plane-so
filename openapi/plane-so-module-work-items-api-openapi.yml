@@ -84,11 +84,11 @@ components:
       schema:
         type: string
         format: uuid
-    WorkItemId:
-      name: work_item_id
+    ProjectId:
+      name: project_id
       in: path
       required: true
-      description: The UUID of the work item (issue).
+      description: The UUID of the project.
       schema:
         type: string
         format: uuid
@@ -99,11 +99,11 @@ components:
       description: The unique slug of the workspace.
       schema:
         type: string
-    ProjectId:
-      name: project_id
+    WorkItemId:
+      name: work_item_id
       in: path
       required: true
-      description: The UUID of the project.
+      description: The UUID of the work item (issue).
       schema:
         type: string
         format: uuid
