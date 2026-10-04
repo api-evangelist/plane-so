@@ -1,0 +1,84 @@
+slug: plane-so
+provider: Plane
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Projects
+  spec_file: plane-so-projects-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.85
+  evidence: POST /workspaces/{workspace_slug}/projects/ createProject 'Create a project in a workspace';
+    schemas PaginatedProjects, ProjectCreate
+  reason: Direct project lifecycle CRUD in a vendor explicitly described as 'an open-source project and
+    product management tool for planning, tracking, and shipping work'.
+- tag: Work Items
+  spec_file: plane-so-work-items-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.85
+  evidence: POST /workspaces/{workspace_slug}/projects/{project_id}/work-items/ createWorkItem 'Create
+    a work item in a project'; schemas WorkItemCreate, PaginatedWorkItems
+  reason: Core issue/task tracking CRUD within projects — the central planning and tracking surface of
+    a project management tool.
+- tag: Cycle Work Items
+  spec_file: plane-so-cycle-work-items-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.8
+  evidence: POST .../cycles/{cycle_id}/work-items/ addCycleWorkItems 'Add work items to a cycle'; 'Transfer
+    incomplete work items to another cycle'
+  reason: Assigning and transferring work items across time-boxed cycles (sprints) is iteration planning
+    and tracking of project work — project execution/tracking in a project management tool.
+- tag: Cycles
+  spec_file: plane-so-cycles-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.8
+  evidence: POST /workspaces/{workspace_slug}/projects/{project_id}/cycles/ createCycle 'Create a cycle
+    in a project'
+  reason: Cycles are Plane's time-boxed iterations within a project; CRUD over them is planning and tracking
+    of project work rather than any other business function.
+- tag: Module Work Items
+  spec_file: plane-so-module-work-items-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.75
+  evidence: POST .../modules/{module_id}/issues/ addModuleWorkItems 'Add work items to a module'
+  reason: Associating work items (issues) with modules — grouping and tracking of project deliverables
+    within a project management tool.
+- tag: Modules
+  spec_file: plane-so-modules-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.75
+  evidence: POST /workspaces/{workspace_slug}/projects/{project_id}/modules/ createModule 'Create a module
+    in a project'
+  reason: Modules are work-breakdown groupings within a Plane project; CRUD over them is project scope/work
+    breakdown structuring, i.e. project execution management.
+- tag: Work Item Comments
+  spec_file: plane-so-work-item-comments-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.7
+  evidence: POST .../work-items/{work_item_id}/comments/ createWorkItemComment 'Add a comment to a work
+    item'
+  reason: Commentary threads attached to project work items are part of project work tracking and collaboration
+    within the PM tool; not a knowledge-management or customer-service surface.

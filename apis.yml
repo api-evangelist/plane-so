@@ -379,6 +379,9 @@ apis:
   - type: Documentation
     url: https://developers.plane.so/api-reference/member/overview
 common:
+- type: CapabilityMap
+  url: capabilities/plane-so-capability-edges.yml
+  name: Plane Business Capability Map
 - type: AgenticAccess
   url: agentic-access/plane-so-agentic-access.yml
 - type: TrustCenter
