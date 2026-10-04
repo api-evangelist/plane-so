@@ -110,60 +110,37 @@ paths:
         '204':
           description: The project was deleted.
 components:
+  parameters:
+    Cursor:
+      name: cursor
+      in: query
+      required: false
+      description: Cursor for cursor-based pagination, in the form value:offset:page.
+      schema:
+        type: string
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of results to return per page (default 20, max 100).
+      schema:
+        type: integer
   schemas:
-    PaginatedProjects:
-      allOf:
-      - $ref: '#/components/schemas/Pagination'
-      - type: object
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Project'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status_code:
-          type: integer
-    ProjectCreate:
-      type: object
-      required:
-      - name
-      - identifier
-      properties:
-        name:
-          type: string
-        identifier:
-          type: string
-        description:
-          type: string
-        network:
-          type: integer
-        project_lead:
-          type: string
-          format: uuid
-        default_assignee:
-          type: string
-          format: uuid
-    Pagination:
-      type: object
-      properties:
-        next_cursor:
-          type: string
-        prev_cursor:
-          type: string
-        next_page_results:
-          type: boolean
-        prev_page_results:
-          type: boolean
-        total_results:
-          type: integer
-        total_pages:
-          type: integer
-        per_page:
-          type: integer
     Project:
       type: object
       properties:
@@ -195,6 +172,59 @@ components:
         updated_at:
           type: string
           format: date-time
+    ProjectCreate:
+      type: object
+      required:
+      - name
+      - identifier
+      properties:
+        name:
+          type: string
+        identifier:
+          type: string
+        description:
+          type: string
+        network:
+          type: integer
+        project_lead:
+          type: string
+          format: uuid
+        default_assignee:
+          type: string
+          format: uuid
+    PaginatedProjects:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Project'
+    Pagination:
+      type: object
+      properties:
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+        next_page_results:
+          type: boolean
+        prev_page_results:
+          type: boolean
+        total_results:
+          type: integer
+        total_pages:
+          type: integer
+        per_page:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status_code:
+          type: integer
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -208,36 +238,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    Cursor:
-      name: cursor
-      in: query
-      required: false
-      description: Cursor for cursor-based pagination, in the form value:offset:page.
-      schema:
-        type: string
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      description: Number of results to return per page (default 20, max 100).
-      schema:
-        type: integer
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

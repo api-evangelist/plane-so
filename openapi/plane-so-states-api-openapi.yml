@@ -110,6 +110,26 @@ paths:
           description: The state was deleted.
 components:
   schemas:
+    StateCreate:
+      type: object
+      required:
+      - name
+      - color
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        group:
+          type: string
+          enum:
+          - backlog
+          - unstarted
+          - started
+          - completed
+          - cancelled
     State:
       type: object
       properties:
@@ -138,39 +158,12 @@ components:
         created_at:
           type: string
           format: date-time
-    StateCreate:
-      type: object
-      required:
-      - name
-      - color
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        color:
-          type: string
-        group:
-          type: string
-          enum:
-          - backlog
-          - unstarted
-          - started
-          - completed
-          - cancelled
   parameters:
     ProjectId:
       name: project_id
       in: path
       required: true
       description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
-    StateId:
-      name: state_id
-      in: path
-      required: true
       schema:
         type: string
         format: uuid
@@ -181,6 +174,13 @@ components:
       description: The unique slug of the workspace.
       schema:
         type: string
+    StateId:
+      name: state_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

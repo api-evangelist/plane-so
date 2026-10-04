@@ -40,13 +40,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status_code:
-          type: integer
     Member:
       type: object
       properties:
@@ -65,6 +58,20 @@ components:
         workspace:
           type: string
           format: uuid
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status_code:
+          type: integer
+  responses:
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     ProjectId:
       name: project_id
@@ -81,13 +88,6 @@ components:
       description: The unique slug of the workspace.
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

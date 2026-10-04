@@ -110,6 +110,13 @@ paths:
           description: The label was deleted.
 components:
   parameters:
+    LabelId:
+      name: label_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
     ProjectId:
       name: project_id
       in: path
@@ -125,14 +132,21 @@ components:
       description: The unique slug of the workspace.
       schema:
         type: string
-    LabelId:
-      name: label_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
   schemas:
+    LabelCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        parent:
+          type: string
+          format: uuid
     Label:
       type: object
       properties:
@@ -154,20 +168,6 @@ components:
         created_at:
           type: string
           format: date-time
-    LabelCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        color:
-          type: string
-        parent:
-          type: string
-          format: uuid
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

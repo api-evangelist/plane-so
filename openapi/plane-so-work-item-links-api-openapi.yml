@@ -114,6 +114,37 @@ paths:
         '204':
           description: The link was deleted.
 components:
+  parameters:
+    WorkItemId:
+      name: work_item_id
+      in: path
+      required: true
+      description: The UUID of the work item (issue).
+      schema:
+        type: string
+        format: uuid
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
   schemas:
     LinkCreate:
       type: object
@@ -142,37 +173,6 @@ components:
         created_at:
           type: string
           format: date-time
-  parameters:
-    LinkId:
-      name: link_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
-    WorkItemId:
-      name: work_item_id
-      in: path
-      required: true
-      description: The UUID of the work item (issue).
-      schema:
-        type: string
-        format: uuid
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

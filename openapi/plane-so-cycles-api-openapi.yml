@@ -110,18 +110,18 @@ paths:
           description: The cycle was deleted.
 components:
   parameters:
+    CycleId:
+      name: cycle_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
     ProjectId:
       name: project_id
       in: path
       required: true
       description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
-    CycleId:
-      name: cycle_id
-      in: path
-      required: true
       schema:
         type: string
         format: uuid
@@ -133,6 +133,21 @@ components:
       schema:
         type: string
   schemas:
+    CycleCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
     Cycle:
       type: object
       properties:
@@ -158,21 +173,6 @@ components:
         created_at:
           type: string
           format: date-time
-    CycleCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

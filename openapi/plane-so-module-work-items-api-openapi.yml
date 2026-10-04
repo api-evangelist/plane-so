@@ -77,10 +77,11 @@ paths:
           description: The work item was removed from the module.
 components:
   parameters:
-    ModuleId:
-      name: module_id
+    WorkItemId:
+      name: work_item_id
       in: path
       required: true
+      description: The UUID of the work item (issue).
       schema:
         type: string
         format: uuid
@@ -92,6 +93,13 @@ components:
       schema:
         type: string
         format: uuid
+    ModuleId:
+      name: module_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
     WorkspaceSlug:
       name: workspace_slug
       in: path
@@ -99,14 +107,6 @@ components:
       description: The unique slug of the workspace.
       schema:
         type: string
-    WorkItemId:
-      name: work_item_id
-      in: path
-      required: true
-      description: The UUID of the work item (issue).
-      schema:
-        type: string
-        format: uuid
   schemas:
     WorkItem:
       type: object

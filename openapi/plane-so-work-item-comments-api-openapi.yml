@@ -114,7 +114,50 @@ paths:
         '204':
           description: The comment was deleted.
 components:
+  parameters:
+    WorkItemId:
+      name: work_item_id
+      in: path
+      required: true
+      description: The UUID of the work item (issue).
+      schema:
+        type: string
+        format: uuid
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: The UUID of the project.
+      schema:
+        type: string
+        format: uuid
+    CommentId:
+      name: comment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    WorkspaceSlug:
+      name: workspace_slug
+      in: path
+      required: true
+      description: The unique slug of the workspace.
+      schema:
+        type: string
   schemas:
+    CommentCreate:
+      type: object
+      required:
+      - comment_html
+      properties:
+        comment_html:
+          type: string
+        access:
+          type: string
+          enum:
+          - INTERNAL
+          - EXTERNAL
     Comment:
       type: object
       properties:
@@ -139,49 +182,6 @@ components:
         created_at:
           type: string
           format: date-time
-    CommentCreate:
-      type: object
-      required:
-      - comment_html
-      properties:
-        comment_html:
-          type: string
-        access:
-          type: string
-          enum:
-          - INTERNAL
-          - EXTERNAL
-  parameters:
-    CommentId:
-      name: comment_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: The UUID of the project.
-      schema:
-        type: string
-        format: uuid
-    WorkItemId:
-      name: work_item_id
-      in: path
-      required: true
-      description: The UUID of the work item (issue).
-      schema:
-        type: string
-        format: uuid
-    WorkspaceSlug:
-      name: workspace_slug
-      in: path
-      required: true
-      description: The unique slug of the workspace.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
