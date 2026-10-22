@@ -1,21 +1,4 @@
 edges:
-- partner_name: Slack (own)
-  partner: slack
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://slack.com/marketplace/A054D7ET4GK-plane
-  mirror_of: slack/integrations/slack-integration-edges.yml
-  apps:
-  - Plane
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Slack app
 - partner_name: SkillsMP (skillsmp.com)
   partner: null
   partner_match: register
@@ -48,6 +31,41 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-agent-skills.py
   first_seen: '2026-10-20'
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A054D7ET4GK-plane
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Plane
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Digital Ocean (own)
+  partner: digital-ocean
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.digitalocean.com/apps/plane-community-edition
+  mirror_of: digital-ocean/integrations/digital-ocean-integration-edges.yml
+  apps:
+  - Plane (Community Edition)
+  - Plane
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: Business Apps
 generated: '2026-10-18'
 method: searched
 source:
@@ -60,3 +78,4 @@ checked:
 - https://officialskills.sh/sitemap.xml
 - https://skillsmp.com/sitemap.xml
 - https://www.skills.sh/sitemap.xml
+- digital-ocean/integrations/digital-ocean-integration-edges.yml
